@@ -2,10 +2,7 @@
 
 # AnyoneAI
 
-<p align="center">
-  <img src="./static/demo.gif" alt="Demo">
-</p>
-
+<img width="100%" src="./static/demo.gif">
 
 Multitudes of inspiring stories flood the internet, about women who leveraged the power of Artificial Intelligence to build scalable climate change solutions that affect millions of people (for articles supporting this statement - check our public note here)
 
@@ -23,6 +20,8 @@ Future Plans: While the current live lab-tutorials in the platform are thoughtfu
 
 ## Future Plans
   While the current live lab-tutorials in the platform are thoughtfully made to work on any low-end computer, we are looking     forward to going a step forward in democratization of AI by providing free temporary cloud compute instances for users to run   their AI code online and get results immediately (feature partially built [using GCP] and available in current version though   not active).
+
+```
 
 ## License
   AnyoneAI, including all git submodules are free software:
