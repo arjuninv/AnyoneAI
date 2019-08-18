@@ -1,6 +1,5 @@
-> This project was ideated, designed and developed for the United Nation's Reboot The Earth Hackathon
-
 # AnyoneAI
+> This project was ideated, designed and developed for the United Nation's Reboot The Earth Hackathon
 
 <img width="100%" src="./static/demo.gif">
 
