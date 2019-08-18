@@ -2,6 +2,9 @@
 
 # AnyoneAI
 
+![Our Demo](https://doc-04-0g-docs.googleusercontent.com/docs/securesc/sbkocduhc6hpblnkgt5lu7e3aaicbq3b/n8edggd23kqkdpv601vm8tgh47b04nda/1566108000000/10275897741116071888/10275897741116071888/1wsBppx2tYo0e7W1VSt3pdw-y1KjQYyZw?e=view&nonce=3b4sqkiv09tks&user=10275897741116071888&hash=hi66qn7u0m28scu6bdfk42i8ete42q92 "Demo")
+
+
 AnyoneAI aims to democratize AI education by providing an intuitive and interactive platform to gain a solid understanding of AI and learn how to solve problems with it. The platform will provide lab-based tutorials where the learners will build their own AI models as they learn, and be able to see the "actual python code" of the model automatically generated as they build. By working on a such a level of abstraction makes the learning process smooth and easy, as it eliminates stages of building AI models that are not relevant to a first-time learner.  
 
 ## Future Plans
