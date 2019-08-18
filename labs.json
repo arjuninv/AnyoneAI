@@ -22,44 +22,49 @@
             },
             {
                 "name": "Experimenting with parameters - Cat vs Dog Classification",
-                "duration": "20mins",
+                "duration": "10mins",
                 "description": "In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions. In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions. In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions."
             }
         ],
         "Basic Machine Learning": [
             {
-                "name": "Lesson 5",
-                "duration": "20mins",
-                "description": "In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions. In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions. In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions."
+                "name": "Linear Regression",
+                "duration": "10mins",
+                "description": "In this lab, you will learn how to build a model to predict housing price, given a few relevant parameters."
             },
             {
-                "name": "Lesson 6",
-                "duration": "30mins",
-                "description": "In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions. In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions. In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions."
+                "name": "Logistic Regression",
+                "duration": "10mins",
+                "description": "In this lab, you will learn how to build a model to classify a given example into one of two categories. "
             }
         ],
         "Time Series": [
             {
-                "name": "Lesson 7",
+                "name": "Recurrent Neural Networks",
                 "duration": "20mins",
-                "description": "In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions. In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions. In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions."
+                "description": "In this lab, you will learn how to build a recurrent neural network for time series forcasting."
             },
             {
-                "name": "Lesson 8",
+                "name": "Introductiong to LSTMs",
                 "duration": "30mins",
-                "description": "In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions. In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions. In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions."
+                "description": "In this lab, you will learn how to solve the vanishing gradient problem in RNNs using LSTMs."
             }
         ],
         "Natural Language Processing": [
             {
-                "name": "Lesson 9",
+                "name": "Getting started: Bag of words",
                 "duration": "20mins",
-                "description": "In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions. In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions. In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions."
+                "description": "In this lab, you will learn some standard NLP techniques, and build your own bag of words model from scratch."
             },
             {
-                "name": "Lesson 10",
+                "name": "Tokenizing Corpus",
                 "duration": "30mins",
-                "description": "In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions. In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions. In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions."
+                "description": "In this lab, you will learn how to tokenize your text corpus using some convinient methods provided by the Keras library."
+            },
+            {
+                "name": "Word Ebeddings using next-word prediction model",
+                "duration": "30mins",
+                "description": "In this lab, you will learn what are embeddings, and build your own word2vec model. Word2vec model vectorizes a word into a fixed length vector, that captures the meaning of the word."
             }
         ]
     },
