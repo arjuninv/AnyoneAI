@@ -2,7 +2,7 @@ html, body, #fullheight {
   position: relative;
   min-height: 100% !important;
   height: 100%;
-  font-family: 'Google Sans'!important;
+  font-family: 'Google Sans', "Open Sans", "Roboto", sans-serif !important;
   background-color: #fafafa !important;
 
 }
