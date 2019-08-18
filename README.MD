@@ -4,6 +4,7 @@
 
 <img width="100%" src="./static/demo.gif">
 
+
 Multitudes of inspiring stories flood the internet, about women who leveraged the power of Artificial Intelligence to build scalable climate change solutions that affect millions of people (for articles supporting this statement - check our public note here)
 
 An analysis of women's involvement in technology and its correlation with our progress in handling climate change is a clear indication that - "When women are empowered with better learning tools and resources, they are better equipped to solve climate change in their community, and globally."
@@ -16,21 +17,24 @@ AnyoneAI aims to democratize AI education by providing an intuitive and interact
 
 This platform intends to have an indirect but profound impact on billions of people at the grassroots level. By empowering more women to build scalable solutions to problems in their own community, AnyoneAI looks to help solve climate change - one learner at a time.
 
+Future Plans: While the current live lab-tutorials in the platform are thoughtfully made to work on any low-end computer, we are looking forward to going a step forward in democratization of AI by providing free temporary cloud compute instances for users to run their AI code online and get results immediately (feature partially built [using GCP] and available in current version though not active).
+
 ## Future Plans
   While the current live lab-tutorials in the platform are thoughtfully made to work on any low-end computer, we are looking     forward to going a step forward in democratization of AI by providing free temporary cloud compute instances for users to run   their AI code online and get results immediately (feature partially built [using GCP] and available in current version though   not active).
 
-```
+
 
 ## License
-  AnyoneAI, including all git submodules are free software:
-  you can redistribute it and/or modify it under the terms of the
-  GNU General Public License as published by the Free Software Foundation,
-  either version 3 of the License, or (at your option) any later version.
+```
+AnyoneAI, including all git submodules are free software:
+you can redistribute it and/or modify it under the terms of the
+GNU General Public License as published by the Free Software Foundation,
+either version 3 of the License, or (at your option) any later version.
 
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-  You should have received a copy of the GNU General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
