@@ -16,8 +16,6 @@ AnyoneAI aims to democratize AI education by providing an intuitive and interact
 
 This platform intends to have an indirect but profound impact on billions of people at the grassroots level. By empowering more women to build scalable solutions to problems in their own community, AnyoneAI looks to help solve climate change - one learner at a time.
 
-Future Plans: While the current live lab-tutorials in the platform are thoughtfully made to work on any low-end computer, we are looking forward to going a step forward in democratization of AI by providing free temporary cloud compute instances for users to run their AI code online and get results immediately (feature partially built [using GCP] and available in current version though not active).
-
 ## Future Plans
   While the current live lab-tutorials in the platform are thoughtfully made to work on any low-end computer, we are looking     forward to going a step forward in democratization of AI by providing free temporary cloud compute instances for users to run   their AI code online and get results immediately (feature partially built [using GCP] and available in current version though   not active).
 
