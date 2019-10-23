@@ -9,7 +9,7 @@ window.webkitIndexedDB || window.msIndexedDB;
          }
 
          var db;
-         var request = window.indexedDB.open("moonshotDB", 1);
+         var request = window.indexedDB.open("anyoneaiDB", 1);
 
          request.onerror = function(event) {
             console.log("error: ", event);
@@ -21,7 +21,7 @@ window.webkitIndexedDB || window.msIndexedDB;
          };
          request.onupgradeneeded = function(event) {
            var db = event.target.result;
-           var objectStore = db.createObjectStore("moonshot", {keyPath: "id"});
+           var objectStore = db.createObjectStore("anyoneai", {keyPath: "id"});
            objectStore.add({id: "projectName", data: ""});
          }
 
@@ -53,10 +53,10 @@ function downloadCode() {
   code = preprocess_code(code);
   var filename = sessionStorage.getItem('projectName');
   if (filename == 'null' || filename == null) {
-    sessionStorage.projectName = "my_moonshot_project";
+    sessionStorage.projectName = "my_anyoneai_project";
   }
 if (filename != null) {
-  download(filename + ".py", code)
+  download(filename + ".py", code);
 }
 }
 
@@ -94,7 +94,7 @@ function refreshCodeDisp() {
 
 function loadBlocks() {
   mainWorkspace.clear()
-blocks_text = sessionStorage.getItem('savedBlocks');
+  blocks_text = sessionStorage.getItem('savedBlocks');
   if (blocks_text != '' && blocks_text != null){
   var blocks = Blockly.Xml.textToDom(blocks_text);
   Blockly.Xml.domToWorkspace(blocks, mainWorkspace);
@@ -103,7 +103,7 @@ blocks_text = sessionStorage.getItem('savedBlocks');
 
 function sampleLoad(samplename) {
   $.ajax({
-    url: "../sample/" + samplename + '.mss',
+    url: "../sample/" + samplename + '.aai',
     success: function (data){
       sessionStorage.projectName = samplename;
       title.value = samplename;
@@ -138,10 +138,10 @@ function download(filename, text) {
   var blocks_text = Blockly.Xml.domToPrettyText(blocks);
   filename = sessionStorage.getItem('projectName');
   if (filename == 'null' || filename == null) {
-    sessionStorage.projectName = "my_moonshot_project";
+    sessionStorage.projectName = "my_anyoneai_project";
   }
 if (filename != null) {
-  download(filename + ".mss", blocks_text)
+  download(filename + ".aai", blocks_text)
 }
 }
 
@@ -149,7 +149,7 @@ if (filename != null) {
 
 function createPrj() {
   if (filename == 'null' || filename == null) {
-    sessionStorage.projectName = "my_moonshot_project";
+    sessionStorage.projectName = "my_anyoneai_project";
   }
   var filename = prompt("Project name: ", sessionStorage.getItem('projectName'));
   sessionStorage.projectName = filename;
@@ -162,15 +162,15 @@ if (filename != null) {
 }
 
 function storedb(tag, value) {
-  var request = db.transaction(["moonshot"], "readwrite")
- .objectStore("moonshot")
+  var request = db.transaction(["anyoneai"], "readwrite")
+ .objectStore("anyoneai")
  .add({ id: tag, data: value });
 }
 
 
 function getdb(tag) {
-  var transaction = db.transaction(["moonshot"]);
-  var objectStore = transaction.objectStore("moonshot");
+  var transaction = db.transaction(["anyoneai"]);
+  var objectStore = transaction.objectStore("anyoneai");
   var request = objectStore.get(tag);
 
   request.onsuccess = function(event) {
