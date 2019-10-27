@@ -7,18 +7,12 @@
 <h3 align="center">AnyoneAI</h3>
 
 <p align="center">
-  Sleek, intuitive, and powerful front-end framework for faster and easier web development.
+  Democratizing AI by providing an end-to-end solution for learning, prototyping, and deploying production ready Machine Learning models at ease.
+
   <br>
-  <a href="https://getbootstrap.com/docs/4.3/"><strong>Explore Bootstrap docs »</strong></a>
+  <a href="https://github.com/ArjunInventor/AnyoneAI/projects"><strong>Contribute »</strong></a>
   <br>
-  <br>
-  <a href="https://github.com/twbs/bootstrap/issues/new?template=bug.md">Report bug</a>
-  ·
-  <a href="https://github.com/twbs/bootstrap/issues/new?template=feature.md&labels=feature">Request feature</a>
-  ·
-  <a href="https://themes.getbootstrap.com/">Themes</a>
-  ·
-  <a href="https://blog.getbootstrap.com/">Blog</a>
+ 
 </p>
 
 <img width="100%" src="./static/demo.gif">
@@ -31,7 +25,6 @@ AnyoneAI aims to democratize AI education by providing an intuitive and interact
 
 
 ## License
-```
 This project is published under the GNU General Public License.
 You can redistribute it and/or modify it under the terms of the 
 GNU General Public License as published by the Free Software Foundation,
@@ -44,4 +37,4 @@ See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
-```
+
