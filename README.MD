@@ -1,7 +1,28 @@
-# AnyoneAI
-> This project was ideated, designed and developed for the United Nation's Reboot The Earth Hackathon
+<p align="center">
+  <a href="https://github.com/ArjunInventor/AnyoneAI/">
+    <img src="https://raw.githubusercontent.com/ArjunInventor/AnyoneAI/master/Logo.png" alt="Bootstrap logo" width="72" height="72">
+  </a>
+</p>
+
+<h3 align="center">AnyoneAI</h3>
+
+<p align="center">
+  Sleek, intuitive, and powerful front-end framework for faster and easier web development.
+  <br>
+  <a href="https://getbootstrap.com/docs/4.3/"><strong>Explore Bootstrap docs »</strong></a>
+  <br>
+  <br>
+  <a href="https://github.com/twbs/bootstrap/issues/new?template=bug.md">Report bug</a>
+  ·
+  <a href="https://github.com/twbs/bootstrap/issues/new?template=feature.md&labels=feature">Request feature</a>
+  ·
+  <a href="https://themes.getbootstrap.com/">Themes</a>
+  ·
+  <a href="https://blog.getbootstrap.com/">Blog</a>
+</p>
 
 <img width="100%" src="./static/demo.gif">
+
 AnyoneAI aims to democratize AI education by providing an intuitive and interactive platform to gain a solid understanding of AI and learn how to solve problems with it. The platform will provide lab-based tutorials where the learners will build their own AI models as they learn, and be able to see the "actual python code" of the model automatically generated as they build. By working on a such a level of abstraction makes the learning process smooth and easy, as it eliminates stages of building AI models that are not relevant to a first-time learner. The short "10 minutes" micro tutorials are specifically designed for learners to quickly learn and invest in themselves in small pockets of time spread throughout the day.
 
 ## Future Plans
