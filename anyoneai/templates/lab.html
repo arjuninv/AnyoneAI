@@ -1,0 +1,906 @@
+<html>
+<head>
+  <meta charset="utf-8">
+<link rel="apple-touch-icon" sizes="180x180" href="../static/apple-touch-icon.png">
+<link rel="icon" type="../static/image/png" sizes="32x32" href="../static/favicon-32x32.png">
+<link rel="icon" type="../static/image/png" sizes="16x16" href="../static/favicon-16x16.png">
+<link rel="mask-icon" href="../static/safari-pinned-tab.svg" color="#5b88d5">
+<meta name="msapplication-TileColor" content="#274264">
+<meta name="theme-color" content="#274264">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="../static/css/style.css">
+  <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+  <title>AnyoneAI | Lab</title>
+  <meta name="mobile-web-app-capable" content="yes">
+  <script src="../static/js/jquery.js" type="text/javascript"></script>
+  <script src="../static/js/popper.min.js" type="text/javascript"></script>
+  <script src="../static/js/bootstrap.js" type="text/javascript"></script>
+  <script src="../static/js/blockly_compressed.js" type="text/javascript"></script>
+  <script src="../static/js/blocks_compressed.js" type="text/javascript"></script>
+  <script src="../static/js/python_compressed.js" type="text/javascript"></script>
+  <script src="../static/js/bluetooth.js" type="text/javascript"></script>
+  <script src="../static/js/script.js" type="text/javascript"></script>
+  <script src="../static/msg/js/en.js" type="text/javascript"></script>
+  <script src="../static/js/custom_blocks.js" type="text/javascript"></script>
+  <script src="../static/js/custom_codegen.js" type="text/javascript"></script>
+  <link rel="manifest" href="../static/manifest.json" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap" rel="stylesheet">
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-130768403-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-130768403-1');
+</script>
+<style>
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+  body {
+    background-color: #fff;
+    font-family: sans-serif;
+    overflow: hidden;
+  }
+
+  #blocklyArea {
+    height: 90%;
+  }
+</style>
+  <script>
+  navigator.serviceWorker && navigator.serviceWorker.register('../static/sw.js').then(function(registration) {
+  });
+</script>
+</head>
+<body>
+  <nav class="navbar navbar-dark navbar-expand-lg">
+    <a class="navbar-brand" href="#">AnyoneAI Lab</a>
+    <div class="navbar-collapse justify-content-between" id="navbar">
+          <div class="navbar-nav">
+            
+
+             <li class="nav-item" style="padding-left: 10px;" >
+               <a class="nav-link" onclick="mainWorkspace.undo(false)"><i class="material-icons">undo</i></a>
+             </li>
+             <li class="nav-item">
+               <a class="nav-link" onclick="mainWorkspace.undo(true)"><i class="material-icons">redo</i></a>
+             </li>
+
+           </div>
+        </div>
+
+
+    </ul>
+  </nav>
+
+<div class="ro">
+
+  <div class="left" id="blockly_panel">
+
+  <div id="blocklyArea" style="height: 99%"></div>
+  <div id="blocklyDiv" style="position: absolute"></div>
+      <!--
+    <p>hello</p>
+  -->
+
+</div>
+
+<div class="right">
+  <div class="right_content">
+      <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-tutorial" role="tab" aria-controls="pills-home" aria-selected="true">Tutorial</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-code" role="tab" aria-controls="pills-profile" aria-selected="false">Code</a>
+          </li>
+
+        </ul>
+        <div class="tab-content" id="pills-tabContent">
+          <div class="tab-pane fade show active" id="pills-tutorial" role="tabpanel" aria-labelledby="pills-home-tab">
+              <div id="q_panel" style="display: block; padding: 20px; padding: 40px; padding-bottom: 40px; height: calc(100% - 106px);">
+                  {{ problem_statement }}
+              </div>
+          </div>
+          <div class="tab-pane fade" id="pills-code" role="tabpanel" aria-labelledby="pills-profile-tab">
+              <div id="code_panel" style="background-color: #f1f1f1; font-family: 'Source Code Pro', monospace; display: block; margin: 20px; padding: 40px; padding-bottom: 40px; height: fit-content; font-size: 13;">
+                  
+              </div>
+          </div>
+        </div>
+
+  </div>
+ 
+  <!-- <div class="submit_bar">
+      <div class="row">
+        <div class="col">
+
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-primary float-right" style="width: 80%">Submit</button>
+
+        </div>
+      </div>
+  </div> -->
+</div>
+</div>
+</div>
+
+  
+</div>
+
+
+
+<xml style="display: none" id="toolbox">
+
+
+<category colour="#cc66ff" name="Logic">
+
+<block type="controls_if">
+</block>
+
+
+<block type="logic_compare">
+
+<field name="OP">EQ</field>
+
+</block>
+
+
+<block type="logic_operation">
+
+<field name="OP">AND</field>
+
+</block>
+
+<block type="logic_negate">
+</block>
+
+
+<block type="logic_boolean">
+
+<field name="BOOL">TRUE</field>
+
+</block>
+
+  <block type="logic_null">
+  </block>
+
+<block type="logic_ternary">
+  </block>
+
+</category>
+
+
+<category colour="#6666ff" name="Math">
+
+
+<block type="math_number">
+
+<field name="NUM">0</field>
+
+</block>
+
+
+<block type="math_arithmetic">
+
+<field name="OP">ADD</field>
+
+
+<value name="A">
+
+
+<shadow type="math_number">
+
+<field name="NUM">1</field>
+
+</shadow>
+
+</value>
+
+
+<value name="B">
+
+
+<shadow type="math_number">
+
+<field name="NUM">1</field>
+
+</shadow>
+
+</value>
+
+</block>
+
+
+<block type="math_single">
+
+<field name="OP">ROOT</field>
+
+
+<value name="NUM">
+
+
+<shadow type="math_number">
+
+<field name="NUM">9</field>
+
+</shadow>
+
+</value>
+
+</block>
+
+
+<block type="math_trig">
+
+<field name="OP">SIN</field>
+
+
+<value name="NUM">
+
+
+<shadow type="math_number">
+
+<field name="NUM">45</field>
+
+</shadow>
+
+</value>
+
+</block>
+
+
+<block type="math_constant">
+
+<field name="CONSTANT">PI</field>
+
+</block>
+
+
+<block type="math_number_property">
+
+<mutation divisor_input="false">
+  </mutation>
+
+<field name="PROPERTY">EVEN</field>
+
+
+<value name="NUMBER_TO_CHECK">
+
+
+<shadow type="math_number">
+
+<field name="NUM">0</field>
+
+</shadow>
+
+</value>
+
+</block>
+
+
+<block type="math_round">
+
+<field name="OP">ROUND</field>
+
+
+<value name="NUM">
+
+
+<shadow type="math_number">
+
+<field name="NUM">3.1</field>
+
+</shadow>
+
+</value>
+
+</block>
+
+
+<block type="math_on_list">
+
+<mutation op="SUM">
+  </mutation>
+
+<field name="OP">SUM</field>
+
+</block>
+
+
+<block type="math_modulo">
+
+
+<value name="DIVIDEND">
+
+
+<shadow type="math_number">
+
+<field name="NUM">64</field>
+
+</shadow>
+
+</value>
+
+
+<value name="DIVISOR">
+
+
+<shadow type="math_number">
+
+<field name="NUM">10</field>
+
+</shadow>
+
+</value>
+
+</block>
+
+
+<block type="math_constrain">
+
+
+<value name="VALUE">
+
+
+<shadow type="math_number">
+
+<field name="NUM">50</field>
+
+</shadow>
+
+</value>
+
+
+<value name="LOW">
+
+
+<shadow type="math_number">
+
+<field name="NUM">1</field>
+
+</shadow>
+
+</value>
+
+
+<value name="HIGH">
+
+
+<shadow type="math_number">
+
+<field name="NUM">100</field>
+
+</shadow>
+
+</value>
+
+</block>
+
+
+<block type="math_random_int">
+
+
+<value name="FROM">
+
+
+<shadow type="math_number">
+
+<field name="NUM">1</field>
+
+</shadow>
+
+</value>
+
+
+<value name="TO">
+
+
+<shadow type="math_number">
+
+<field name="NUM">100</field>
+
+</shadow>
+
+</value>
+
+</block>
+
+<block type="math_random_float">
+  </block>
+
+</category>
+
+
+<category colour="#66ffcb" name="Text">
+
+
+<block type="text">
+
+<field name="TEXT">
+  </field>
+
+</block>
+
+
+<block type="text_join">
+
+<mutation items="2">
+  </mutation>
+
+</block>
+
+
+<block type="text_append">
+
+<field id="R$CGov/z6jcYZ=7/?Sdd" name="VAR">item</field>
+
+
+<value name="TEXT">
+
+
+<shadow type="text">
+
+<field name="TEXT">
+  </field>
+
+</shadow>
+
+</value>
+
+</block>
+
+
+<block type="text_length">
+
+
+<value name="VALUE">
+
+
+<shadow type="text">
+
+<field name="TEXT">abc</field>
+
+</shadow>
+
+</value>
+
+</block>
+
+
+<block type="text_isEmpty">
+
+
+<value name="VALUE">
+
+
+<shadow type="text">
+
+<field name="TEXT">
+  </field>
+
+</shadow>
+
+</value>
+
+</block>
+
+
+<block type="text_indexOf">
+
+<field name="END">FIRST</field>
+
+
+<value name="VALUE">
+
+
+<block type="variables_get">
+
+<field id="P}GV=BSA2:q6xkD!POe)" name="VAR">text</field>
+
+</block>
+
+</value>
+
+
+<value name="FIND">
+
+
+<shadow type="text">
+
+<field name="TEXT">abc</field>
+
+</shadow>
+
+</value>
+
+</block>
+
+
+<block type="text_charAt">
+
+<mutation at="true">
+  </mutation>
+
+<field name="WHERE">FROM_START</field>
+
+
+<value name="VALUE">
+
+
+<block type="variables_get">
+
+<field id="P}GV=BSA2:q6xkD!POe)" name="VAR">text</field>
+
+</block>
+
+</value>
+
+</block>
+
+
+<block type="text_getSubstring">
+
+<mutation at2="true" at1="true">
+  </mutation>
+
+<field name="WHERE1">FROM_START</field>
+
+<field name="WHERE2">FROM_START</field>
+
+
+<value name="STRING">
+
+
+<block type="variables_get">
+
+<field id="P}GV=BSA2:q6xkD!POe)" name="VAR">text</field>
+
+</block>
+
+</value>
+
+</block>
+
+
+<block type="text_changeCase">
+
+<field name="CASE">UPPERCASE</field>
+
+
+<value name="TEXT">
+
+
+<shadow type="text">
+
+<field name="TEXT">abc</field>
+
+</shadow>
+
+</value>
+
+</block>
+
+
+<block type="text_trim">
+
+<field name="MODE">BOTH</field>
+
+
+<value name="TEXT">
+
+
+<shadow type="text">
+
+<field name="TEXT">abc</field>
+
+</shadow>
+
+</value>
+
+</block>
+
+
+<block type="text_print">
+
+
+<value name="TEXT">
+
+
+<shadow type="text">
+
+<field name="TEXT">abc</field>
+
+</shadow>
+
+</value>
+
+</block>
+
+
+<block type="text_prompt_ext">
+
+<mutation type="TEXT">
+  </mutation>
+
+<field name="TYPE">TEXT</field>
+
+
+<value name="TEXT">
+
+
+<shadow type="text">
+
+<field name="TEXT">abc</field>
+
+</shadow>
+
+</value>
+
+</block>
+
+</category>
+
+
+<category colour="#9866ff" name="Lists">
+
+
+<block type="lists_create_with">
+
+<mutation items="0">
+  </mutation>
+
+</block>
+
+
+<block type="lists_create_with">
+
+<mutation items="3">
+  </mutation>
+
+</block>
+
+
+<block type="lists_repeat">
+
+
+<value name="NUM">
+
+
+<shadow type="math_number">
+
+<field name="NUM">5</field>
+
+</shadow>
+
+</value>
+
+</block>
+
+<block type="lists_length">
+  </block>
+
+<block type="lists_isEmpty">
+</block>
+
+
+<block type="lists_indexOf">
+
+<field name="END">FIRST</field>
+
+
+<value name="VALUE">
+
+
+<block type="variables_get">
+
+<field id="tlBo-mrQkEGvYnwN|O#@" name="VAR">list</field>
+
+</block>
+
+</value>
+
+</block>
+
+
+<block type="lists_getIndex">
+
+<mutation at="true" statement="false">
+  </mutation>
+
+<field name="MODE">GET</field>
+
+<field name="WHERE">FROM_START</field>
+
+
+<value name="VALUE">
+
+
+<block type="variables_get">
+
+<field id="tlBo-mrQkEGvYnwN|O#@" name="VAR">list</field>
+
+</block>
+
+</value>
+
+</block>
+
+
+<block type="lists_setIndex">
+
+<mutation at="true">
+  </mutation>
+
+<field name="MODE">SET</field>
+
+<field name="WHERE">FROM_START</field>
+
+
+<value name="LIST">
+
+
+<block type="variables_get">
+
+<field id="tlBo-mrQkEGvYnwN|O#@" name="VAR">list</field>
+
+</block>
+
+</value>
+
+</block>
+
+
+<block type="lists_getSublist">
+
+<mutation at2="true" at1="true">
+  </mutation>
+
+<field name="WHERE1">FROM_START</field>
+
+<field name="WHERE2">FROM_START</field>
+
+
+<value name="LIST">
+
+
+<block type="variables_get">
+
+<field id="tlBo-mrQkEGvYnwN|O#@" name="VAR">list</field>
+
+</block>
+
+</value>
+
+</block>
+
+
+<block type="lists_split">
+
+<mutation mode="SPLIT">
+  </mutation>
+
+<field name="MODE">SPLIT</field>
+
+
+<value name="DELIM">
+
+
+<shadow type="text">
+
+<field name="TEXT">,</field>
+
+</shadow>
+
+</value>
+
+</block>
+
+
+<block type="lists_sort">
+
+<field name="TYPE">NUMERIC</field>
+
+<field name="DIRECTION">1</field>
+
+</block>
+
+</category>
+
+<sep>
+  </sep>
+
+
+  <category colour="#667fff" name="Dataset">
+      <block type="download_kaggle">
+      </block>
+      <block type="unzip">
+        </block>
+  </category>
+
+  <category colour="#667fff" name="Model">
+      <block type="build_model">
+      </block>
+      <block type="_3_layer_covolution_2d">
+        </block>
+      <block type="single_neuron">
+      </block>
+      <block type="binary_crossentropy">
+      </block>
+      <block type="categorical_crossentropy">
+      </block>
+      <block type="rmsprop">
+      </block>
+      <block type="adam">
+      </block>
+      <block type="train_with_images">
+      </block>
+      <block type="save_model">
+        </block>
+  </category>
+
+
+  <sep>
+    </sep>
+
+<category colour="#fffb89" name="Variables" custom="VARIABLE">
+  </category>
+
+</xml>
+
+
+<script src="https://www.puck-js.com/puck.js"></script>
+<script>
+var blocklyArea = document.getElementById('blocklyArea');
+var blocklyDiv = document.getElementById('blocklyDiv');
+var mainWorkspace = Blockly.inject('blocklyDiv',
+  {media: '../static/media/',
+  toolbox: document.getElementById('toolbox'),
+  zoom:
+         {controls: true,
+          wheel: false,
+          startScale: 1.1,
+          maxScale: 3,
+          minScale: 0.3,
+          scaleSpeed: 1.2},
+  grid:
+        {spacing: 20,
+         length: 1,
+         colour: '#ccc',
+         snap: true},
+     trashcan: true
+  });
+  mainWorkspace.addChangeListener(saveBlocks);
+
+var onresize = function(e) {
+  var element = blocklyArea;
+  var x = 0;
+  var y = 0;
+  do {
+    x += element.offsetLeft;
+    y += element.offsetTop;
+    element = element.offsetParent;
+  } while (element);
+  // Position blocklyDiv over blocklyArea.
+  blocklyDiv.style.left = 15 + 'px';
+  blocklyDiv.style.top = 0 + 'px';
+  blocklyDiv.style.width = blocklyArea.offsetWidth + 'px';
+  blocklyDiv.style.height = (blocklyArea.offsetHeight - 50) + 'px';
+  Blockly.svgResize(mainWorkspace);
+};
+
+
+
+
+window.addEventListener('resize', onresize, false);
+onresize();
+Blockly.svgResize(mainWorkspace);
+
+</script>
+
+
+
+</body>
+</html>

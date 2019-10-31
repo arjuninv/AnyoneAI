@@ -1,0 +1,3 @@
+[console_scripts]
+anyoneai = anyoneai.labs:main
+

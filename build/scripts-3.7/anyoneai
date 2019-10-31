@@ -1,0 +1,7 @@
+#!/usr/bin/env python
+
+print("working!")
+
+from ../main import *
+
+app.run(host='localhost', threaded=True, port=30, debug=True)
