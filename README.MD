@@ -8,9 +8,9 @@
 
 <p align="center">
   Democratizing AI by providing an end-to-end solution for learning, prototyping, and deploying production ready Machine Learning models at ease.
-
   <br>
   <a href="https://github.com/ArjunInventor/AnyoneAI/projects"><strong>Contribute »</strong></a>
+  <br>
   <br>
  
 </p>
