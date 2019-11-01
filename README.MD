@@ -23,7 +23,7 @@ AnyoneAI aims to democratize AI education by providing an intuitive and interact
 The short "10 minutes" micro tutorials are specifically designed for learners to quickly learn and invest in themselves in small pockets of time spread throughout the day.
 
 ## Install
-To install the current release:
+To install the beta release:
 ```
 pip install anyoneai
 ```
