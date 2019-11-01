@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="anyoneai",
-    version="0.1",
+    version="0.0.0.3",
     license='GNU',
     author="Arjun S",
     author_email="arjun.santhoshkumar@gmail.com",
@@ -18,6 +18,7 @@ setuptools.setup(
           'flask',
           'gevent'
       ],
+    include_package_data = True,
     entry_points ={ 
             'console_scripts': [ 
                 'anyoneai = anyoneai.labs:main'
@@ -27,5 +28,5 @@ setuptools.setup(
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.6',
+    python_requires='>=3.5',
 )

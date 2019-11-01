@@ -1,0 +1,76 @@
+{
+    "levels": [
+        {
+            "name": "Computer Vision"
+        },
+        {
+            "name": "Basic Machine Learning"
+        },
+        {
+            "name": "Time Series"
+        },
+        {
+            "name": "Natural Language Processing"
+        }
+    ],
+    "labs":{
+        "Computer Vision": [
+            {
+                "name": "Getting started - Crop Weed Discrimination using Convolutional Neural Network",
+                "duration": "10mins",
+                "description": "In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions. In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions. In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions."
+            },
+            {
+                "name": "Experimenting with parameters - Cat vs Dog Classification",
+                "duration": "10mins",
+                "description": "In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions. In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions. In this lab, you will learn how to preprocess data before applying Machine Learning algorithms to make predictions."
+            }
+        ],
+        "Basic Machine Learning": [
+            {
+                "name": "Linear Regression",
+                "duration": "10mins",
+                "description": "In this lab, you will learn how to build a model to predict housing price, given a few relevant parameters."
+            },
+            {
+                "name": "Logistic Regression",
+                "duration": "10mins",
+                "description": "In this lab, you will learn how to build a model to classify a given example into one of two categories. "
+            }
+        ],
+        "Time Series": [
+            {
+                "name": "Recurrent Neural Networks",
+                "duration": "20mins",
+                "description": "In this lab, you will learn how to build a recurrent neural network for time series forcasting."
+            },
+            {
+                "name": "Introductiong to LSTMs",
+                "duration": "30mins",
+                "description": "In this lab, you will learn how to solve the vanishing gradient problem in RNNs using LSTMs."
+            }
+        ],
+        "Natural Language Processing": [
+            {
+                "name": "Getting started: Bag of words",
+                "duration": "20mins",
+                "description": "In this lab, you will learn some standard NLP techniques, and build your own bag of words model from scratch."
+            },
+            {
+                "name": "Tokenizing Corpus",
+                "duration": "30mins",
+                "description": "In this lab, you will learn how to tokenize your text corpus using some convinient methods provided by the Keras library."
+            },
+            {
+                "name": "Word Ebeddings using next-word prediction model",
+                "duration": "30mins",
+                "description": "In this lab, you will learn what are embeddings, and build your own word2vec model. Word2vec model vectorizes a word into a fixed length vector, that captures the meaning of the word."
+            }
+        ]
+    },
+    "problem_statements": {
+        "Getting started - Crop Weed Discrimination using Convolutional Neural Network" : {
+            "text": "<h5>Introduction</h5><p>Classification problems in real life can be solved using machine learning. In this module we will implement a really powerful image classifier which will enable us to decide wether the image of plant is weed or not. Weeds are the unwanted plant which grows around a harvest and consume the helpful nutrients from the soil which is required by the harvest to grow better. Today we will use this platform to build an image classifier and learn how to apply the concepts of machine learning in a intuitive way.</p><br><h5>Step 1: </h5><p>Since this is a supervised machine learning problem we will need labeled dataset to train our model. In this module we will use a dataset available for us in kaggle with id 'gavinarmstrong/open-sprayer-images'.To do that click on the dataset on the left and drag the dataset block from the list and attach text to the id of the dataset block with value 'gavinarmstrong/open-sprayer-images'.</p><br><h5>Step 2: </h5><p>Since the dataset we downloaded in the last step is compressed we will have to uncompress it in order to use it to further train our model and to do that we will unzip the downloaded dataset to appropriate directory which will give us train and test data for further use. At this point click on dataset again and connect the unzip block to the downloaded dataset, to specify the directory to unzip the files in specify the path using text block.</p><br><h5>Step 3:</h5><p>After we have our data which we can use, we will now build our model. Click on model and connect the build model block to the uncompressed dataset. Build model requires certain parameters which we will need to specify in order to accomplish our task. Among the parameters the first is layers, since our dataset consists of binary image data we will use 3 layer convolutional network. For the second parameter which is loss function for our model we will use binary crossentropy since we are dealing with classification of two rather than catagorical features. You may use optimizer of your choice but the best practise is to use adam in such cases since it is most often found that it gives the best possible results, for the learning rate we will start small but you may experiment with different rates to find out the effects.</p><br><h5>Step 4:</h5><p>This step is the final step of building our image classifier and this step consists of training our model we built in the last step. Since our data is images click and select the train with images block from the list and connect it to the model we have built. Our training will take several parameters first of which is batch size, since in our case considering the compute at our disposal we will choose a batch size of 16. Our images are 225x225 in size therefore the image size will be 225. The train folder and test folder will be according to the directories we uncompressed in our second step. Class mode. You may experiment with the number of epochs and observe how it affects the end result. At this point you will have the trained model with you. You have just finished creating a image classifier from scratch in the most intuitive way possible.</p>"
+        }
+    }
+}

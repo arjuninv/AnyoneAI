@@ -1,0 +1,9 @@
+include anyoneai/*.json
+include anyoneai/static/*
+include anyoneai/static/css/*
+include anyoneai/static/js/*
+include anyoneai/static/media/*
+include anyoneai/static/msg/*
+include anyoneai/static/sample/*
+include anyoneai/static/xml/*
+include anyoneai/templates/*

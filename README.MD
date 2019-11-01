@@ -15,7 +15,7 @@
  
 </p>
 
-<img width="100%" src="./static/demo.gif">
+<img width="100%" src="https://raw.githubusercontent.com/ArjunInventor/AnyoneAI/master/lab_screenshot.png">
 
 AnyoneAI aims to democratize AI education by providing an intuitive and interactive platform to gain a solid understanding of AI and learn how to solve problems with it. The platform will provide lab-based tutorials where the learners will build their own AI models as they learn, and be able to see the "actual python code" of the model automatically generated as they build.
 <br>
@@ -35,4 +35,3 @@ anyoneai
 
 ## License
 <a href="https://github.com/ArjunInventor/AnyoneAI/blob/master/LICENSE">GNU General Public License</a>
-

@@ -14,10 +14,9 @@ import logging
 
 IP = '127.0.0.1'
 
-if "templates" not in os.listdir('.'):
-    os.chdir(os.getcwd() +  "\\anyoneai\\")
+ROOT_PATH = os.path.dirname(__file__)
 
-app = Flask(__name__, root_path=os.getcwd())
+app = Flask(__name__, root_path=ROOT_PATH)
 
 log = logging.getLogger('werkzeug')
 log.disabled = True
@@ -32,14 +31,14 @@ def login():
 
 @app.route('/service/labs')
 def service_labs():
-    data = open('labs.json')
+    data = open(os.path.join(ROOT_PATH, 'labs.json'))
     data = json.load(data)
     return jsonify(data["levels"])
 
 
 @app.route('/service/labs/<level>')
 def service_labs_level(level):
-    data = open('labs.json')
+    data = open(os.path.join(ROOT_PATH, 'labs.json'))
     data = json.load(data)
     if level in data["labs"]:
         return jsonify(data["labs"][level])
@@ -48,7 +47,7 @@ def service_labs_level(level):
 
 @app.route('/lab/<lab_name>')
 def lab(lab_name):
-    data = open('labs.json')
+    data = open(os.path.join(ROOT_PATH, 'labs.json'))
     data = json.load(data)
     if lab_name in data["problem_statements"]:
         data = data["problem_statements"][lab_name]
