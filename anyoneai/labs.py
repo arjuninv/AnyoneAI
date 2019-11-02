@@ -11,8 +11,17 @@ import logging
 import time
 import os
 import logging
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--port", help="Port to use [default - 8089]")
+args = parser.parse_args()
 
 IP = '127.0.0.1'
+PORT = 8089
+
+if args.port:
+    PORT = int(args.port)
 
 ROOT_PATH = os.path.dirname(__file__)
 
@@ -56,7 +65,6 @@ def lab(lab_name):
         return "Coming soon..."
 
 def main():    
-    # app.run(host='localhost', threaded=True, port=30, debug=False)
-    http_server = WSGIServer((IP, 80), app)
-    print("Serving on {}".format("http://" + IP + "/"))
+    http_server = WSGIServer((IP, PORT), app)
+    print("Serving on {}".format("http://" + IP + ":" + str(PORT)))
     http_server.serve_forever()
