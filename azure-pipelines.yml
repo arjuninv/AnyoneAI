@@ -39,15 +39,9 @@ steps:
     python setup.py bdist_wheel
   displayName: 'Build'
 
-- task: TwineAuthenticate@0
+- task: PublishBuildArtifacts@1
   inputs:
-    externalFeeds: 'PyPi Service Connection'
-  displayName: 'Twine Authenticate'
-
-- script: |
-    python -m twine upload -r 'anyoneai' --config-file $(PYPIRC_PATH) dist/*.whl
-  displayName: 'Publish Python Package'
-
-
-
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'wheel'
+    publishLocation: 'Container'
 
