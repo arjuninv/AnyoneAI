@@ -39,13 +39,13 @@ steps:
     python setup.py bdist_wheel
   displayName: 'Build'
 
-- task: TwineAuthenticate@1
-  displayName: 'Twine Authenticate'
+- task: TwineAuthenticate@0
   inputs:
-    pythonUploadServiceConnection: 'PyPi Service Connection'
+    externalFeeds: 'Generic PyPi Service Connection'
+  displayName: 'Twine Authenticate'
 
 - script: |
-    python -m twine upload -r pypi --config-file $(PYPIRC_PATH) dist/*.whl
+    python -m twine upload -r anyoneai --config-file $(PYPIRC_PATH) dist/*.whl
   displayName: 'Publish Python Package'
 
 
