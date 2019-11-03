@@ -11,6 +11,7 @@
   <br>
   <a href="https://github.com/ArjunInventor/AnyoneAI/projects"><strong>Contribute »</strong></a>
   <br>
+  ![PyPI](https://img.shields.io/pypi/v/anyoneai) ![PyPI - License](https://img.shields.io/pypi/l/anyoneai) 
   <br>
  
 </p>
@@ -21,6 +22,12 @@ AnyoneAI aims to democratize AI education by providing an intuitive and interact
 <br>
 <br>
 The short "10 minutes" micro tutorials are specifically designed for learners to quickly learn and invest in themselves in small pockets of time spread throughout the day.
+
+##Release
+| Build       | Release                                                                                                                                                                                                                           |
+|-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Master      | [![Build Status](https://dev.azure.com/arjunsanthoshkumar/AnyoneAI/_apis/build/status/AnyoneAI%20Production?branchName=master)](https://dev.azure.com/arjunsanthoshkumar/AnyoneAI/_build/latest?definitionId=3&branchName=master) |
+
 
 ## Install
 To install the beta release:
