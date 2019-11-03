@@ -34,15 +34,16 @@ steps:
     rm -r anyoneai.egg-info
   displayName: 'Clear privious build'
 
-- task: PyPIPublisher@0
+- script: |
+    pip install twine
+  displayName: 'Install dependencies for publish'
+
+- task: TwineAuthenticate@0
   inputs:
-    pypiConnection: 'Generic PyPi Service Connection'
-    packageDirectory: ''
-    alsoPublishWheel: true
-
-
+    externalFeeds: 'PyPi Service Connection'
 
 - script: |
-    pip install pytest pytest-azurepipelines
-    pytest
-  displayName: 'pytest'
+    twine upload -r anyoneai --config-file $(PYPIRC_PATH) dist/*
+
+
+
