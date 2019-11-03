@@ -37,6 +37,7 @@ steps:
 
 - script: |
     python setup.py bdist_wheel
+    cp -r dist $(Build.ArtifactStagingDirectory)
   displayName: 'Build'
 
 - task: PublishBuildArtifacts@1
