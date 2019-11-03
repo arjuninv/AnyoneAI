@@ -24,10 +24,8 @@ steps:
   displayName: 'Use Python $(python.version)'
 
 - script: |
-    cd anyoneai
     python -m pip install --upgrade pip
     pip install -r requirements.txt
-    cd ..
   displayName: 'Install dependencies'
 
 - script: |
