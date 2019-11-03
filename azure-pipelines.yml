@@ -45,7 +45,7 @@ steps:
     pythonUploadServiceConnection: 'PyPi Service Connection'
 
 - script: |
-    python -m twine upload -r "PyPi Service Connection" --config-file $(PYPIRC_PATH) dist/*.whl
+    python -m twine upload -r pypi --config-file $(PYPIRC_PATH) dist/*.whl
   displayName: 'Publish Python Package'
 
 
