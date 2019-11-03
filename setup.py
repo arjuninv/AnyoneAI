@@ -1,12 +1,15 @@
 from setuptools import setup, find_packages
 import os
+import json
+
+VERSION = "0.0.0.5"
 
 with open(os.path.join(os.path.abspath(os.path.dirname(__file__)), "README.MD"), "r") as fh:
     long_description = fh.read()
 
 setup(
     name="anyoneai",
-    version="0.0.0.4",
+    version=VERSION,
     license='GNU',
     author="Arjun S",
     author_email="arjun.santhoshkumar@gmail.com",
