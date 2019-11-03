@@ -29,18 +29,15 @@ steps:
   displayName: 'Install dependencies'
 
 - script: |
-    ls
     rm -r dist
     rm -r build
     rm -r anyoneai.egg-info
-    ls
-    cwd
   displayName: 'Clear privious build'
 
 - task: PyPIPublisher@0
   inputs:
     pypiConnection: 'Generic PyPi Service Connection'
-    packageDirectory: '/'
+    packageDirectory: ''
     alsoPublishWheel: true
 
 
