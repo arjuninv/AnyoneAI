@@ -45,7 +45,9 @@ steps:
     externalFeeds: 'PyPi Service Connection'
 
 - script: |
-    twine upload -r anyoneai --config-file $(PYPIRC_PATH) dist/*
+    twine upload dist/*
+  displayName: 'Publish to PyPI'
+
 
 
 
