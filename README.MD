@@ -30,7 +30,7 @@ The short "10 minutes" micro tutorials are specifically designed for learners to
 ## Release
 | Build       | Release                                                                                                                                                                                                                           |
 |-------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Master      | [![Build Status](https://dev.azure.com/arjunsanthoshkumar/AnyoneAI/_apis/build/status/AnyoneAI%20Production?branchName=master)](https://dev.azure.com/arjunsanthoshkumar/AnyoneAI/_build/latest?definitionId=3&branchName=master) |
+| Master      | [![Build Status](https://dev.azure.com/arjunsanthoshkumar/AnyoneAI/_apis/build/status/AnyoneAI%20Production?branchName=master)](https://dev.azure.com/arjunsanthoshkumar/AnyoneAI/_release?_a=releases&view=mine&definitionId=1) |
 
 
 ## Install
