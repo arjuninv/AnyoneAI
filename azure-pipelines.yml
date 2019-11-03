@@ -35,6 +35,7 @@ steps:
   displayName: 'Clear privious build'
 
 - script: |
+    ls
     python setup.py install sdist bdist_wheel
   displayName: 'Build'
 
