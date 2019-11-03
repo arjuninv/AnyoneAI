@@ -1,11 +1,12 @@
-import setuptools
+from setuptools import setup, find_packages
+import os
 
-with open("README.md", "r") as fh:
+with open(os.path.join(os.path.dirname(__file__), "README.md"), "r") as fh:
     long_description = fh.read()
 
-setuptools.setup(
+setup(
     name="anyoneai",
-    version="0.0.0.3",
+    version="0.0.0.4",
     license='GNU',
     author="Arjun S",
     author_email="arjun.santhoshkumar@gmail.com",
@@ -13,7 +14,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/ArjunInventor/anyoneai",
-    packages=setuptools.find_packages(),
+    packages=find_packages(),
     install_requires=[  
           'flask',
           'gevent'
