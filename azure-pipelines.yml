@@ -22,7 +22,6 @@ steps:
 - script: |
     python -m pip install --upgrade pip
     pip install -r requirements.txt
-    pip install wheel
   displayName: 'Install dependencies'
 
 - script: |
@@ -32,20 +31,22 @@ steps:
   displayName: 'Clear privious build'
 
 - script: |
-    python setup.py install sdist bdist_wheel
+    pip install wheel
+    pip install twine
+  displayName: 'Install dependencies for Build & Publish'
+
+- script: |
+    python setup.py bdist_wheel
   displayName: 'Build'
 
-- script: |
-    pip install twine
-  displayName: 'Install dependencies for publish'
-
-- task: TwineAuthenticate@0
+- task: TwineAuthenticate@1
+  displayName: 'Twine Authenticate'
   inputs:
-    externalFeeds: 'PyPi Service Connection'
+    pythonUploadServiceConnection: 'PyPi Service Connection'
 
 - script: |
-    twine upload -r 'PyPi Service Connection' --config-file $(PYPIRC_PATH) dist/*
-  displayName: 'Publish to PyPI'
+    python -m twine upload -r "PyPi Service Connection" --config-file $(PYPIRC_PATH) dist/*.whl
+  displayName: 'Publish Python Package'
 
 
 
