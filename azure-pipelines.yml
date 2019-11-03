@@ -41,7 +41,7 @@ steps:
 
 - task: TwineAuthenticate@0
   inputs:
-    externalFeeds: 'Generic PyPi Service Connection'
+    externalFeeds: 'PyPi Service Connection'
   displayName: 'Twine Authenticate'
 
 - script: |
