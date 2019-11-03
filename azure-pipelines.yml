@@ -41,10 +41,10 @@ steps:
 
 - task: TwineAuthenticate@0
   inputs:
-    externalFeeds: 'nPyPi Service Connectio'
+    externalFeeds: 'PyPi Service Connection'
 
 - script: |
-    twine upload -r PyPi 'Service Connectio' --config-file $(PYPIRC_PATH) dist/*
+    twine upload -r 'PyPi Service Connection' --config-file $(PYPIRC_PATH) dist/*
   displayName: 'Publish to PyPI'
 
 
