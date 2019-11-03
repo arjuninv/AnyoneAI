@@ -35,6 +35,10 @@ steps:
   displayName: 'Clear privious build'
 
 - script: |
+    python setup.py install sdist bdist_wheel
+  displayName: 'Build'
+
+- script: |
     pip install twine
   displayName: 'Install dependencies for publish'
 
