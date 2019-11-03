@@ -45,7 +45,7 @@ steps:
   displayName: 'Twine Authenticate'
 
 - script: |
-    python -m twine upload -r 'PyPi Service Connection' --config-file $(PYPIRC_PATH) dist/*.whl
+    python -m twine upload -r 'anyoneai' --config-file $(PYPIRC_PATH) dist/*.whl
   displayName: 'Publish Python Package'
 
 
