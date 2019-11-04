@@ -39,9 +39,14 @@ To install the beta release:
 pip install anyoneai
 ```
 
-To start AnyoneAI Lab Session:
+## Usage
+To start AnyoneAI Lab Session (default port - 8089):
 ```
 anyoneai
+```
+To start AnyoneAI Session at a specific port:
+```
+anyoneai --port <PORT>
 ```
 
 ## License
