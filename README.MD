@@ -30,7 +30,7 @@ The short "10 minutes" micro tutorials are specifically designed for learners to
 ## Release
 | Branch      | Release                                                                                                                                                                                                                                      | Artifact                                     |
 |-------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------|
-| Master      | [![Build Status](https://dev.azure.com/arjunsanthoshkumar/AnyoneAI/_apis/build/status/AnyoneAI%20Production?branchName=master)](https://dev.azure.com/arjunsanthoshkumar/AnyoneAI/_build/latest?definitionId=3&branchName=master)            | | [PyPI](https://pypi.org/project/anyoneai/) |
+| Master      | [![Build Status](https://dev.azure.com/arjunsanthoshkumar/AnyoneAI/_apis/build/status/AnyoneAI%20Production?branchName=master)](https://dev.azure.com/arjunsanthoshkumar/AnyoneAI/_build/latest?definitionId=3&branchName=master)            | [PyPI](https://pypi.org/project/anyoneai/) |
 | Development | [![Build Status](https://dev.azure.com/arjunsanthoshkumar/AnyoneAI/_apis/build/status/AnyoneAI%20Development?branchName=development)](https://dev.azure.com/arjunsanthoshkumar/AnyoneAI/_build/latest?definitionId=4&branchName=development) |                                              |
 
 
