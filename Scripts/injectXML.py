@@ -1,7 +1,17 @@
 #%%
-import os
+import argparse
 
-custom_js_file = open(os.getcwd()+"/anyoneai/static/js/custom_blocks.js",'r')
+parser = argparse.ArgumentParser()
+parser.add_argument("--custom-js", help="Path to custom_blocks.js")
+parser.add_argument("--labsHTML", help="Path to labs.js")
+args = parser.parse_args()
+
+if args.custom-js:
+    CUSTOMJSPATH = str(args.custom-js)
+if args.labsHTML:
+    LABSHTMLPATH = str(args.labsHTML)
+
+custom_js_file = open(CUSTOMJSPATH,'r')
 custom_js = custom_js_file.read()
 custom_js_file.close()
 block_dictionary = {}
@@ -50,7 +60,7 @@ labHTML = labHTML.replace(old_code, code)
 
 
 # %%
-labHTML_fil = open(os.getcwd()+"/anyoneai/templates/lab.html", "w")
+labHTML_fil = open(LABSHTMLPATH, "w")
 labHTML_fil.write(labHTML)
 labHTML_fil.close()
 
