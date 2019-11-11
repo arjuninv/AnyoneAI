@@ -2,7 +2,7 @@ html, body, #fullheight {
   position: relative;
   min-height: 100% !important;
   height: 100%;
-  font-family: 'Google Sans', "Open Sans", "Roboto", sans-serif !important;
+  font-family: "Open Sans", "Roboto", sans-serif !important;
   background-color: #fafafa !important;
 
 }
@@ -10,6 +10,10 @@ html, body, #fullheight {
 body {
   overflow-y: scroll!important;
 
+}
+
+h5 {
+  font-weight: 400!important;
 }
 
 .navbar.navbar-dark {
@@ -152,6 +156,19 @@ z-index: 5;
   box-shadow: 0px!important;
 }
 
+.c-card-file {
+  background-color: white;
+  padding: 15px;
+  margin-top: 10px;
+  border: solid 1px #e5e5e5;
+}
+
+.c-card-file:hover {
+  border-color: rgb(211, 211, 211);
+  background-color: rgb(250, 250, 250);
+  cursor: pointer;
+}
+
 p {
   font-family: Roboto Bold;
   font-size: 14px;
@@ -183,4 +200,33 @@ p {
 
 button {
   border-radius: 4px!important;
+}
+
+.pwd {
+  background-color: #fcfcfc;
+  border: solid 1px #e4e4e4;
+  border-radius: 5px;
+  height: auto;
+  margin-top: 18px;
+  padding: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.pwd-txt {
+  font-family: "Consolas" !important;
+  vertical-align: middle;
+  margin-top: auto;
+  margin-bottom: auto;
+
+}
+
+.new-btn {
+  padding: 5px!important;
+  padding-left: 25px!important;
+  padding-right: 25px!important;
+  margin: 0px!important;
+  background-color:#E8F0FE!important;
+  color: #0056b3!important;
 }

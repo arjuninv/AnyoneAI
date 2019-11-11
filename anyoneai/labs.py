@@ -24,26 +24,16 @@ app = Flask(__name__, root_path=ROOT_PATH)
 log = logging.getLogger('werkzeug')
 log.disabled = True
 
+
 @app.route('/')
 def index():
     return render_template("index.html")
-    
-
-@app.route('/service/labs')
-def service_labs():
-    data = open(os.path.join(ROOT_PATH, 'labs.json'))
-    data = json.load(data)
-    return jsonify(data["levels"])
 
 
-@app.route('/service/labs/<level>')
-def service_labs_level(level):
-    data = open(os.path.join(ROOT_PATH, 'labs.json'))
-    data = json.load(data)
-    if level in data["labs"]:
-        return jsonify(data["labs"][level])
-    else:
-        return jsonify({"error": "lab does not exist"})
+@app.route('/lab')
+def lab_list():
+    return render_template("lab_list.html")
+
 
 @app.route('/lab/<lab_name>')
 def lab(lab_name):
@@ -56,7 +46,44 @@ def lab(lab_name):
         return "Coming soon..."
 
 
+@app.route('/service/build/cwd')
+def service_build_cwd():
+    return jsonify(os.getcwd())
+
+@app.route('/service/build/files')
+def service_build_files():
+    files = os.listdir()
+    response = []
+    for file in files:
+        if file.endswith(".aai"):
+            url = file + ".aai"
+        else:
+            url = ""
+        response.append((file, url))
+    return jsonify(response)
+
+
+@app.route('/service/labs')
+def service_labs():
+    data = open(os.path.join(ROOT_PATH, 'labs.json'))
+    data = json.load(data)
+    return jsonify(data["levels"])
+
+
+
+
+@app.route('/service/labs/<level>')
+def service_labs_level(level):
+    data = open(os.path.join(ROOT_PATH, 'labs.json'))
+    data = json.load(data)
+    if level in data["labs"]:
+        return jsonify(data["labs"][level])
+    else:
+        return jsonify({"error": "lab does not exist"})
+
+
 def main():
+    app.debug = True
     http_server = WSGIServer((IP, PORT), app)
     print("Serving on {}".format("http://" + IP + ":" + str(PORT)))
     http_server.serve_forever()
