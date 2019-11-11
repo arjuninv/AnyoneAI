@@ -43,6 +43,6 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'Dev_Source'
+    ArtifactName: 'Prod_Source'
     publishLocation: 'Container'
 
