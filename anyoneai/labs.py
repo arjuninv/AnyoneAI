@@ -27,10 +27,7 @@ log.disabled = True
 @app.route('/')
 def index():
     return render_template("index.html")
-
-@app.route('/login')
-def login():
-    return render_template("login.html")
+    
 
 @app.route('/service/labs')
 def service_labs():
@@ -58,7 +55,8 @@ def lab(lab_name):
     else:
         return "Coming soon..."
 
-def main():    
+
+def main():
     http_server = WSGIServer((IP, PORT), app)
     print("Serving on {}".format("http://" + IP + ":" + str(PORT)))
     http_server.serve_forever()
