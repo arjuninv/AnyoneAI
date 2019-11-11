@@ -1,11 +1,5 @@
-from flask import (
-    Flask,
-    render_template,
-    url_for,
-    jsonify,
-    json,
-    Markup
-    )
+from flask import (Flask, render_template, url_for,
+                    jsonify, json, Markup)
 from gevent.pywsgi import WSGIServer
 import logging
 import time
@@ -68,3 +62,6 @@ def main():
     http_server = WSGIServer((IP, PORT), app)
     print("Serving on {}".format("http://" + IP + ":" + str(PORT)))
     http_server.serve_forever()
+
+if __name__ == "__main__":
+    main()
