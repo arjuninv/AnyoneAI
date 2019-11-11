@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 import os
 import json
 
-VERSION = "0.0.0.6"
+VERSION = "0.0.0.7"
 
 with open(os.path.join(os.path.abspath(os.path.dirname(__file__)), "README.MD"), "r") as fh:
     long_description = fh.read()
@@ -29,8 +29,12 @@ setup(
             ] 
         }, 
     classifiers=[
+        "Development Status :: 3 - Alpha",
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
+        "Intended Audience :: Education",
+        "Intended Audience :: Developers",
+        "Intended Audience :: Science/Research"
     ],
     python_requires='>=3.5',
 )
