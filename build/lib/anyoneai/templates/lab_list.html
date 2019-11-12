@@ -23,31 +23,30 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link waves-effect waves-light" href="./">Build <span class="sr-only">(current)</span></a>
-                        </li>
                         <li class="nav-item">
-                           <a class="nav-link waves-effect waves-light" href="./lab">Learn</a>
+                            <a class="nav-link waves-effect waves-light" href="./">Build</a>
                         </li>
+                        <li class="nav-item active">
+                           <a class="nav-link waves-effect waves-light" href="./lab">Learn <span class="sr-only">(current)</span></a>
+                        </li>
+
                     </ul>
                     
                 </div>
                         
                         
             </nav>
-            <div class="menu">
-                <ul class="menu-options">
-                  <li class="menu-option">Open</li>
-                  <li class="menu-option">Duplicate</li>
-                  <li class="menu-option">Rename</li>
-                  <li class="menu-option">Delete</li>
-                </ul>
-              </div>
+
+
             <div class="col-2" id="sidenav">
 
                       <div class="list-group" id="levels">
-                          <a id="local" class="list-group-item level active">Local</a>
-                          <a id="samples" class="list-group-item level">Samples</a>
+                          <div class="text-center">
+
+                              <div class="spinner-grow text-primary" role="status" style="margin-top: 10px">
+                          <span class="sr-only">Loading...</span>
+                        </div>
+                          </div>
 
                           </div>
                       </div>
@@ -62,19 +61,9 @@
                         <div class="col-2 " >
                     </div>
 
-                    <div class="col-10">
-                      <div id="pwd" class="pwd" height="fit-content">
-                        <p id="pwd-txt" class="pwd-txt"></p>
-                        <div>
-                            <button type="button" class="new-btn btn" onclick="newProject()"><i class="fas fa-plus-circle pr-1"></i>New Project</button>
-                            <button type="button" class="new-btn btn" onclick="get_files()"><i class="fas fa-sync pr-1"></i> Refresh</button>
-                        </div>
-            
-                      </div>
+
+                    <div class="col-10" id="lab_list">
                       
-                      <div id="lab_list">
-                        
-                      </div>
                     </div>
             </div>
 
@@ -112,8 +101,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.1/js/mdb.min.js"></script>
-<script src="{{ url_for('static', filename='js/index.js') }}"></script>
-
+<script src="{{ url_for('static', filename='js/lab_list.js') }}"></script>
 </body>
 
 </html>
