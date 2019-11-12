@@ -89,25 +89,40 @@
 <div class="right">
   <div class="right_content">
       <ul class="nav nav-tabs mb-3" id="pills-tab" role="tablist">
+          {% if learn %}
           <li class="nav-item">
-            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-tutorial" role="tab" aria-controls="pills-home" aria-selected="true">Tutorial</a>
+            <a class="nav-link active" data-toggle="pill" href="#pills-tutorial" role="tab" aria-controls="pills-home" aria-selected="true">Tutorial</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-code" role="tab" aria-controls="pills-profile" aria-selected="false">Code</a>
+            <a class="nav-link" data-toggle="pill" href="#pills-code" role="tab" aria-controls="pills-profile" aria-selected="false">Code</a>
           </li>
+          {% else %}
+          <li class="nav-item">
+              <a class="nav-link active" data-toggle="pill" href="#pills-code" role="tab" aria-controls="pills-profile" aria-selected="false">Code</a>
+            </li>
+          {% endif %}
+
 
         </ul>
         <div class="tab-content" id="pills-tabContent">
+          {% if learn %}
           <div class="tab-pane fade show active" id="pills-tutorial" role="tabpanel" aria-labelledby="pills-home-tab">
               <div id="q_panel" style="display: block; padding: 20px; padding: 40px; padding-bottom: 40px; height: calc(100% - 106px);">
                   {{ problem_statement }}
               </div>
           </div>
           <div class="tab-pane fade" id="pills-code" role="tabpanel" aria-labelledby="pills-profile-tab">
-              <div id="code_panel" style="background-color: #f1f1f1; font-family: 'Source Code Pro', monospace; display: block; margin: 20px; padding: 40px; padding-bottom: 40px; height: fit-content; font-size: 13;">
-                  
+              <div id="code_panel" style="background-color: #f1f1f1; font-family: 'Source Code Pro', monospace; display: block; margin: 20px; padding: 40px; padding-bottom: 40px; height: fit-content; font-size: 13;">   
               </div>
           </div>
+          {% else %}
+          <div class="tab-pane fade show active" id="pills-code" role="tabpanel" aria-labelledby="pills-profile-tab">
+              <div id="code_panel" style="background-color: #f1f1f1; font-family: 'Source Code Pro', monospace; display: block; margin: 20px; padding: 40px; padding-bottom: 40px; height: fit-content; font-size: 13;"> 
+              </div>
+          </div>
+          {% endif %}
+
+
         </div>
 
   </div>
@@ -812,7 +827,7 @@
 <sep>
   </sep>
 
-
+<!-- custom blocks starts here -->
   <category colour="#667fff" name="Dataset">
       <block type="download_kaggle">
       </block>
@@ -844,7 +859,7 @@
 
   <sep>
     </sep>
-
+<!-- custom blocks end here -->
 <category colour="#fffb89" name="Variables" custom="VARIABLE">
   </category>
 

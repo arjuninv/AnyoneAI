@@ -1,3 +1,4 @@
+//dataset~$~#667fff
 Blockly.Blocks['download_kaggle'] = {
   init: function() {
     this.appendDummyInput()
@@ -15,6 +16,7 @@ Blockly.Blocks['download_kaggle'] = {
   }
 };
 
+//dataset
 Blockly.Blocks['unzip'] = {
   init: function() {
     this.appendDummyInput()
@@ -32,6 +34,7 @@ Blockly.Blocks['unzip'] = {
   }
 };
 
+//model~$~#4287f5
 Blockly.Blocks['build_model'] = {
   init: function() {
     this.appendDummyInput()
@@ -57,6 +60,7 @@ Blockly.Blocks['build_model'] = {
   }
 };
 
+//model
 Blockly.Blocks['_3_layer_covolution_2d'] = {
   init: function() {
     this.appendDummyInput()
@@ -69,6 +73,7 @@ Blockly.Blocks['_3_layer_covolution_2d'] = {
   }
 };
 
+//model
 Blockly.Blocks['single_neuron'] = {
   init: function() {
     this.appendDummyInput()
@@ -81,6 +86,7 @@ Blockly.Blocks['single_neuron'] = {
   }
 };
 
+//model
 Blockly.Blocks['binary_crossentropy'] = {
   init: function() {
     this.appendDummyInput()
@@ -93,6 +99,8 @@ Blockly.Blocks['binary_crossentropy'] = {
   }
 };
 
+
+//model
 Blockly.Blocks['categorical_crossentropy'] = {
   init: function() {
     this.appendDummyInput()
@@ -105,6 +113,7 @@ Blockly.Blocks['categorical_crossentropy'] = {
   }
 };
 
+//model
 Blockly.Blocks['rmsprop'] = {
   init: function() {
     this.appendDummyInput()
@@ -120,6 +129,7 @@ Blockly.Blocks['rmsprop'] = {
   }
 };
 
+//model
 Blockly.Blocks['adam'] = {
   init: function() {
     this.appendDummyInput()
@@ -135,6 +145,7 @@ Blockly.Blocks['adam'] = {
   }
 };
 
+//model
 Blockly.Blocks['train_with_images'] = {
   init: function() {
     this.appendDummyInput()
@@ -172,6 +183,7 @@ Blockly.Blocks['train_with_images'] = {
   }
 };
 
+//model
 Blockly.Blocks['save_model'] = {
   init: function() {
     this.appendDummyInput()
