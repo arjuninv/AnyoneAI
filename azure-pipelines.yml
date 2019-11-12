@@ -25,9 +25,9 @@ steps:
   displayName: 'Install dependencies'
 
 - script: |
-    rm -r dist
-    rm -r build
-    rm -r anyoneai.egg-info
+    rm -rf dist
+    rm -rf build
+    rm -rf anyoneai.egg-info
   displayName: 'Clear privious build'
 
 - script: |
