@@ -160,6 +160,7 @@ z-index: 5;
   background-color: white;
   padding: 15px;
   margin-top: 10px;
+  margin-bottom: 10px;
   border: solid 1px #e5e5e5;
 }
 
@@ -203,7 +204,7 @@ button {
 }
 
 .pwd {
-  background-color: #fcfcfc;
+  background:#E8F0FE;
   border: solid 1px #e4e4e4;
   border-radius: 5px;
   height: auto;
@@ -215,17 +216,18 @@ button {
 }
 
 .pwd-txt {
-  font-family: "Consolas" !important;
+  font-family: "Open Sans" !important;
   vertical-align: middle;
   margin-top: auto;
   margin-bottom: auto;
-
+  color: #0056b3;
+  margin-left: 10px;
 }
 
 .new-btn {
   padding: 5px!important;
-  padding-left: 25px!important;
-  padding-right: 25px!important;
+  padding-left: 10px!important;
+  padding-right: 10px!important;
   margin: 0px!important;
   background-color:#E8F0FE!important;
   color: #0056b3!important;
@@ -233,18 +235,17 @@ button {
 
 .new-btn:hover {
   background-color:rgb(212, 228, 255)!important;
-
 }
 
 .menu {
   width: 120px;
-  box-shadow: -1px 2px 15px 5px rgba(0, 0, 0, 0.1),0 0 5px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: -1px 2px 15px 5px rgba(0, 0, 0, 0.1),0 0 2px 0px rgba(0, 0, 0, 0.1);
   position: absolute;
   display: none;
   z-index: 10 ;
   background-color: white;
-  border-radius: 5px;
   color: #505050;
+  transition: display 2s linear;
 }
 
 .menu-options {
@@ -263,4 +264,3 @@ button {
     background:#E8F0FE;
     color: #0056b3;
 }
-    

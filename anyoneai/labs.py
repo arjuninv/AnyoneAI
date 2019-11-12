@@ -1,10 +1,11 @@
 from flask import (Flask, render_template, url_for,
-                    jsonify, json, Markup)
+                    jsonify, json, Markup, request)
 import gevent
 from gevent.pywsgi import WSGIServer
 import logging
 import time
 import os
+import shutil
 import logging
 import argparse
 import webbrowser
@@ -36,9 +37,11 @@ def index():
 def lab_list():
     return render_template("lab_list.html")
 
+
 @app.route('/build')
 def build():
     return render_template("lab.html", learn=False)
+
 
 @app.route('/lab/<lab_name>')
 def lab(lab_name):
@@ -55,9 +58,35 @@ def lab(lab_name):
 def service_build_cwd():
     return jsonify(os.getcwd())
 
+@app.route('/service/build/duplicate/')
+def service_build_duplicate():
+    if "file" in request.args:
+        shutil.copyfile(os.path.join(os.getcwd(), request.args['file']), os.path.join(os.getcwd(), "copy_" + request.args['file']))
+        return "done"
+    else:
+        return "no file"
+
+
+@app.route('/service/build/delete/')
+def service_build_delete():
+    if "file" in request.args:
+        os.remove(os.path.join(os.getcwd(), request.args['file']))
+        return "done"
+    else:
+        return "no file"
+
+# @app.route('/service/build/rename/')
+# def service_build_rename():
+#     if "file" in request.args:
+#         os.rename(os.path.join(os.getcwd(), request.args['file']), os.path.join(os.getcwd(), "copy_" + request.args['file']))
+#         return "done"
+#     else:
+#         return "no file"
+
+
 @app.route('/service/build/files')
 def service_build_files():
-    files = os.listdir()
+    files = [f for f in os.listdir(os.getcwd()) if os.path.isfile(f)]
     response = []
     for file in files:
         if file.endswith(".aai"):
@@ -73,8 +102,6 @@ def service_labs():
     data = open(os.path.join(ROOT_PATH, 'labs.json'))
     data = json.load(data)
     return jsonify(data["levels"])
-
-
 
 
 @app.route('/service/labs/<level>')
