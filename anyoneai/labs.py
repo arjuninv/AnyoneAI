@@ -119,6 +119,20 @@ def getXML():
     else:
         return "NO DATA"
 
+@app.route('/services/saveXML')
+def saveXML():
+    if "file" in request.args:
+        file = request.args["file"]
+        if "xml" in request.args:
+            xml_file = open(os.getcwd()+"/"+file,'w')
+            xml_file.write(request.args["xml"])
+            xml_file.close()
+            return "SAVED"
+        else:
+            return "XML NOT PRESENT"
+    else:
+        return "FILE NOT FOUND"
+
 
 
 @app.route('/service/labs')
