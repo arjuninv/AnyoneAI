@@ -29,7 +29,7 @@ function get_files() {
             } else {
                 url_inj = `onclick='alert("This file is not an AnyoneAI Project")'`;
             }
-            list = list + `<div id="` + element[0] + `" class="c-card-file" ` + url_inj + `>` +   element[0]+ `</div>`;
+            list = list + `<div id="` + element[0] + `" class="c-card-file" ` + url_inj + `><p style="margin: 0px;">` +   element[0]+ `</p></div>`;
             console.log(element);
         });
         $("#lab_list").html(list);
