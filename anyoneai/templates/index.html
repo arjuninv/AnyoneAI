@@ -35,8 +35,14 @@
                         
                         
             </nav>
-
-
+            <div class="menu">
+                <ul class="menu-options">
+                  <li class="menu-option">Open</li>
+                  <li class="menu-option">Duplicate</li>
+                  <li class="menu-option">Rename</li>
+                  <li class="menu-option">Delete</li>
+                </ul>
+              </div>
             <div class="col-2" id="sidenav">
 
                       <div class="list-group" id="levels">
@@ -59,9 +65,11 @@
                     <div class="col-10">
                       <div id="pwd" class="pwd" height="fit-content">
                         <p id="pwd-txt" class="pwd-txt"></p>
-                        <button type="button" class="new-btn btn">New Project</button>
+                        <button type="button" class="new-btn btn" onclick="newProject()">New Project</button>
                       </div>
+                      
                       <div id="lab_list">
+                        
                       </div>
                     </div>
             </div>
@@ -101,6 +109,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.1/js/mdb.min.js"></script>
 <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+
 </body>
 
 </html>

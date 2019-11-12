@@ -1,11 +1,13 @@
 from flask import (Flask, render_template, url_for,
                     jsonify, json, Markup)
+import gevent
 from gevent.pywsgi import WSGIServer
 import logging
 import time
 import os
 import logging
 import argparse
+import webbrowser
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--port", help="Port to use [default - 8089]")
@@ -34,6 +36,9 @@ def index():
 def lab_list():
     return render_template("lab_list.html")
 
+@app.route('/build')
+def build():
+    return render_template("lab.html", learn=False)
 
 @app.route('/lab/<lab_name>')
 def lab(lab_name):
@@ -41,7 +46,7 @@ def lab(lab_name):
     data = json.load(data)
     if lab_name in data["problem_statements"]:
         data = data["problem_statements"][lab_name]
-        return render_template("lab.html", problem_statement=Markup(data["text"]))
+        return render_template("lab.html", learn=True, problem_statement=Markup(data["text"]))
     else:
         return "Coming soon..."
 
@@ -84,9 +89,12 @@ def service_labs_level(level):
 
 def main():
     app.debug = True
-    http_server = WSGIServer((IP, PORT), app)
-    print("Serving on {}".format("http://" + IP + ":" + str(PORT)))
+    http_server = WSGIServer((IP, PORT), app, log=None)
+    url = "http://" + IP + ":" + str(PORT) + "/"
+    print("AnyoneAI Lab session running on {}".format(url))
+    webbrowser.open(url)
     http_server.serve_forever()
+    
 
 if __name__ == "__main__":
     main()

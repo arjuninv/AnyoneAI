@@ -230,3 +230,37 @@ button {
   background-color:#E8F0FE!important;
   color: #0056b3!important;
 }
+
+.new-btn:hover {
+  background-color:rgb(212, 228, 255)!important;
+
+}
+
+.menu {
+  width: 120px;
+  box-shadow: -1px 2px 15px 5px rgba(0, 0, 0, 0.1),0 0 5px 0px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  display: none;
+  z-index: 10 ;
+  background-color: white;
+  border-radius: 5px;
+  color: #505050;
+}
+
+.menu-options {
+    list-style: none;
+    padding: 10px 0;
+    margin: 0px;
+}
+.menu-option {
+    font-weight: 500;
+    font-size: 14px;
+    padding: 10px 40px 10px 20px;
+    cursor: pointer;
+}
+
+.menu-option:hover {
+    background:#E8F0FE;
+    color: #0056b3;
+}
+    

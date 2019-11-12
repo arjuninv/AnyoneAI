@@ -29,7 +29,7 @@ function get_files() {
             } else {
                 url_inj = `onclick='alert("This file is not an AnyoneAI Project")'`;
             }
-            list = list + `<div class="c-card-file"` + url_inj + ` <h5>` + element[0] +`</h6> </div>`;
+            list = list + `<div id="` + element[0] + `" class="c-card-file"` + url_inj + ` <h5>` + element[0] +`</h6> </div>`;
             console.log(element);
         });
         $("#lab_list").html(list);
@@ -37,3 +37,48 @@ function get_files() {
     });
 
 }
+
+function newProject() {
+    window.open("../build?a=new");
+}
+
+window.addEventListener("contextmenu", e => {
+    if(e.target.classList[0] == "c-card-file") {
+        console.log(e.target.id);
+        e.preventDefault();
+        const origin = {
+            left: e.pageX,
+            top: e.pageY
+          };
+          setPosition(origin);
+          return false;
+    }
+    else {
+        if (menuVisible) toggleMenu("hide");
+    }
+  
+  });
+
+
+const menu = document.querySelector(".menu");
+const menuOption = document.querySelector(".menu-option");
+let menuVisible = false;
+
+const toggleMenu = command => {
+  menu.style.display = command === "show" ? "block" : "none";
+  menuVisible = !menuVisible;
+};
+
+const setPosition = ({ top, left }) => {
+  menu.style.left = `${left}px`;
+  menu.style.top = `${top}px`;
+  toggleMenu("show");
+};
+
+window.addEventListener("click", e => {
+  if (menuVisible) toggleMenu("hide");
+});
+
+menuOption.addEventListener("onfocusout", e => {
+  console.log("mouse-option", e.target.innerHTML);
+});
