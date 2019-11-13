@@ -39,13 +39,48 @@ function get_files() {
 }
 
 function newProject() {
-    window.open("../build?a=new");
+    $('#startLabModal').modal('show')
+    document.getElementById("file_Exists_indicator").style.display = "none";
+    document.getElementById("prj_filename").value = "Untitled Project";
+
+  //  window.open("../build?a=new");
 }
+
+function createProject(){
+    var filename = document.getElementById("prj_filename");
+    $.get('../service/build/create', {filename:filename.value}, function(data) {
+        if(data == "file exists") {
+            document.getElementById("file_Exists_indicator").style.display = "block";
+        } else {
+            $('#startLabModal').modal('hide')
+            get_files();
+            window.open("../build?filename=" + data);
+        }
+    }
+    );
+
+}
+
+function rename_file(){
+    var new_filename = document.getElementById("rename_filename");
+    $.get('../service/build/rename', {filename:file_selected, new_filename:new_filename.value}, function (data, textStatus, jqXHR) {
+        if(data == "done") {
+            get_files();
+            $('#renameModal').modal('hide');
+        } else {
+            document.getElementById("rename_error").style.display = "block";
+        }
+    });
+}
+
+
 var file_selected;
 window.addEventListener("contextmenu", e => {
-    if(e.target.classList[0] == "c-card-file") {
-        console.log(e.target.id);
+    if(e.target.classList[0] == "c-card-file" || e.target.parentElement.classList[0] == "c-card-file") {
+        if (e.target.classList[0] == "c-card-file")
         file_selected = e.target.id;
+        else
+        file_selected = e.target.parentElement.id;
         e.preventDefault();
         const origin = {
             left: e.pageX,
@@ -89,19 +124,18 @@ window.addEventListener("click", e => {
     if(e.target.innerHTML == "Open") {
     document.getElementById(file_selected).click();
     } else if (e.target.innerHTML == "Duplicate") {
-        $.get('../service/build/duplicate', {file:file_selected}, function (data, textStatus, jqXHR) {
+        $.get('../service/build/duplicate', {filename:file_selected}, function (data, textStatus, jqXHR) {
             if(data == "done") {
                 get_files();
             }
         });
     } else if (e.target.innerHTML == "Rename") {
-        $.get('../service/build/rename', {file:file_selected}, function (data, textStatus, jqXHR) {
-            if(data == "done") {
-                get_files();
-            }
-        });
+        document.getElementById("rename_error").style.display = "none";
+        document.getElementById("rename_filename").value = file_selected;
+        $('#renameModal').modal('show');
+        
     } else if (e.target.innerHTML == "Delete"){
-        $.get('../service/build/delete', {file:file_selected}, function (data, textStatus, jqXHR) {
+        $.get('../service/build/delete', {filename:file_selected}, function (data, textStatus, jqXHR) {
             if(data == "done") {
                 get_files();            }
         });
