@@ -7,20 +7,20 @@ window.onload = function() {
       Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);
     }
   });
-  setInterval(saveXML, 10000);
+  setInterval(saveXML, 2000);
 };
 
-let blocksChanged = false
+let saveStatus = false
 function saveXML(){
   let searchParams = new URLSearchParams(window.location.search);
   let xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
-  if (blocksChanged){
+  if (saveStatus){
     $.get("../services/saveXML?file=" + searchParams.get("file")+"&xml="+encodeURI(Blockly.Xml.domToText(xml)), function(data) {
       if (data != "SAVED"){
         console.log(data)
       }
     });
-    blocksChanged = false;
+    saveStatus = false;
   }
   
 }
@@ -102,7 +102,7 @@ function saveFile() {
   }
 }
 function saveBlocks() {
-  blocksChanged = true;
+  saveStatus = true;
 }
 
 
