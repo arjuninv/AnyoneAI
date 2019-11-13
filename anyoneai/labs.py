@@ -43,6 +43,7 @@ def build():
     return render_template("lab.html", learn=False)
 
 
+
 @app.route('/lab/<lab_name>')
 def lab(lab_name):
     data = open(os.path.join(ROOT_PATH, 'labs.json'))
@@ -60,8 +61,8 @@ def service_build_cwd():
 
 @app.route('/service/build/duplicate/')
 def service_build_duplicate():
-    if "file" in request.args:
-        shutil.copyfile(os.path.join(os.getcwd(), request.args['file']), os.path.join(os.getcwd(), "copy_" + request.args['file']))
+    if "filename" in request.args:
+        shutil.copyfile(os.path.join(os.getcwd(), request.args['filename']), os.path.join(os.getcwd(), "copy_" + request.args['filename']))
         return "done"
     else:
         return "no file"
@@ -69,19 +70,34 @@ def service_build_duplicate():
 
 @app.route('/service/build/delete/')
 def service_build_delete():
-    if "file" in request.args:
-        os.remove(os.path.join(os.getcwd(), request.args['file']))
+    if "filename" in request.args:
+        os.remove(os.path.join(os.getcwd(), request.args['filename']))
         return "done"
     else:
         return "no file"
 
-# @app.route('/service/build/rename/')
-# def service_build_rename():
-#     if "file" in request.args:
-#         os.rename(os.path.join(os.getcwd(), request.args['file']), os.path.join(os.getcwd(), "copy_" + request.args['file']))
-#         return "done"
-#     else:
-#         return "no file"
+@app.route('/service/build/create/')
+def service_build_create():
+    if "filename" in request.args:
+        if not os.path.exists(request.args["filename"] + ".aai"):
+            with open(request.args["filename"] + ".aai", "w+") as file:
+                file.write("")
+            return request.args["filename"] + ".aai"
+        else:
+            return "file exists"
+    else:
+        return "filename required"
+
+@app.route('/service/build/rename/')
+def service_build_rename():
+    if "filename" in request.args and "new_filename" in request.args:
+        try:
+            os.rename(os.path.join(os.getcwd(), request.args['filename']), os.path.join(os.getcwd(), request.args['new_filename']))
+        except:
+            return "error"
+        return "done"
+    else:
+        return "no file"
 
 
 @app.route('/service/build/files')
@@ -90,11 +106,48 @@ def service_build_files():
     response = []
     for file in files:
         if file.endswith(".aai"):
-            url = file + ".aai"
+            url = "build?filename="+file
         else:
             url = ""
         response.append((file, url))
     return jsonify(response)
+
+
+@app.route('/build')
+def build_local():
+    if "filename" in request.args:
+        return render_template("lab.html", learn=False)
+    else:
+        return render_template("404.html")
+
+@app.route('/services/getXML')
+def getXML():
+    if "filename" in request.args:
+        filename = request.args["filename"]
+        xml_file = open(os.getcwd()+"/"+filename,'r')
+        xml = xml_file.read()
+        xml_file.close()
+        if xml != "":
+            return xml
+        else:
+            return "NO DATA"
+    else:
+        return "NO DATA"
+
+@app.route('/services/saveXML')
+def saveXML():
+    if "filename" in request.args:
+        filename = request.args["filename"]
+        if "xml" in request.args:
+            xml_file = open(os.getcwd()+"/"+filename,'w')
+            xml_file.write(request.args["xml"])
+            xml_file.close()
+            return "SAVED"
+        else:
+            return "XML NOT PRESENT"
+    else:
+        return "FILE NOT FOUND"
+
 
 
 @app.route('/service/labs')

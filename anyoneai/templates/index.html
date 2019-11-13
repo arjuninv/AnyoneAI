@@ -86,27 +86,51 @@
              
 <div class="modal fade" id="startLabModal" tabindex="-1" role="dialog" aria-labelledby="Start Lab"
   aria-hidden="true">
-
   <div class="modal-dialog modal-dialog-centered" role="document">
-
-
     <div class="modal-content" style="padding: 5px">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle" style="color: black; font-size: 22px;">Start lab?</h5>
-
+        <h5 class="modal-title" id="exampleModalLongTitle" style="color: black; font-size: 22px;">New Project</h5>
       </div>
-      <div class="modal-body" style="padding-bottom: 0px">
-        <h5 style="font-size: 16px; font-weight: 400; color: black">Instruction</h5>
-        <p id="model_text" style="font-weight: 100; color: grey"></p>
-        <h5 style="font-size: 16px; font-weight: 400; color: black">Duration</h5>
-        <p style="font-weight: 100; color: grey">10 mins</p>
-      <div class="modal-footer">
+      <div class="modal-body" style="padding-bottom: 0px; padding-top: 0px;">
+        <p>AnyoneAI projects will have (.aai) extention.</p>
+        <div class="md-form md-outline">
+          <input type="text" id="prj_filename" class="form-control" value="Untitled Project">
+          <label for="form1">Project Name</label>
+          <small id="file_Exists_indicator" class="form-text text-danger" style="display:none">A project with the same name already exists in the folder.</small>
+        </div>
+      <div class="modal-footer" style="padding-top: 0px; ">
         <button type="button" class="btn" data-dismiss="modal" style="color: black;">Cancel</button>
-        <button type="button" class="btn btn-primary" onclick="window.open(lab_session_url()); $('#startLabModal').modal('hide');">Start</button>
+        <button type="button" class="btn btn-primary" onclick="createProject()">Create</button>
       </div>
     </div>
   </div>
 </div>
+</div>
+
+<div class="modal fade" id="renameModal" tabindex="-1" role="dialog" aria-labelledby="Start Lab"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content" style="padding: 5px">
+      <div class="modal-header">
+        <h5 class="modal-title" style="color: black; font-size: 22px;">Rename File</h5>
+      </div>
+      <div class="modal-body" style="padding-bottom: 0px; padding-top: 0px;">
+        <p>Enter the new file name.</p>
+        <div class="md-form md-outline">
+          <input type="text" id="rename_filename" class="form-control" value="Untitled Project">
+          <label for="rename_filename">File Name</label>
+          <small id="rename_error" class="form-text text-danger" style="display:none">Unable to rename file.</small>
+        </div>
+      <div class="modal-footer" style="padding-top: 0px; ">
+        <button type="button" class="btn" data-dismiss="modal" style="color: black;">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="rename_file()">Rename</button>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
