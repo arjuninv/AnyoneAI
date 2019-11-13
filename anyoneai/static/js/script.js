@@ -100,6 +100,46 @@ function saveFile() {
 
 function saveBlocks() {
   code_disp();
-  save_info.innerHTML = "Saving...";
+  document.querySelectorAll('pre code').forEach((block) => {
+    hljs.highlightBlock(block);
+  });  save_info.innerHTML = "Saving...";
   saveStatus = true;
+}
+
+function toggle_theme() {
+  var theme_sheet = document.getElementById('theme_sheet');
+  var dark = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow-night-blue.min.css';
+  var light = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css';
+  var icons = document.getElementsByClassName('code-button');
+
+  if(theme_sheet.href == dark){
+    theme_sheet.href = light;
+    for(i = 0; i < icons.length; i++) {
+      icons[i].style.color = 'black';
+    }
+  } else {
+    theme_sheet.href = dark;
+    for(i = 0; i < icons.length; i++) {
+      icons[i].style.color = 'white';
+    }
+  }
+}
+
+
+function copy_code() {
+  $('.toast').toast("show");
+
+  if (document.selection) { 
+      var range = document.body.createTextRange();
+      range.moveToElementText(code_panel);
+      range.select().createTextRange();
+      document.execCommand("copy"); 
+  
+  } else if (window.getSelection) {
+      var range = document.createRange();
+       range.selectNode(code_panel);
+       window.getSelection().addRange(range);
+       document.execCommand("copy");
+      
+      }
 }

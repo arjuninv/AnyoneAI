@@ -9,12 +9,15 @@
 <meta name="theme-color" content="#274264">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="../static/css/style.css">
-  <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
   <title>AnyoneAI | Lab</title>
   <meta name="mobile-web-app-capable" content="yes">
-  <script src="../static/js/jquery.js" type="text/javascript"></script>
-  <script src="../static/js/popper.min.js" type="text/javascript"></script>
-  <script src="../static/js/bootstrap.js" type="text/javascript"></script>
   <script src="../static/js/blockly_compressed.js" type="text/javascript"></script>
   <script src="../static/js/blocks_compressed.js" type="text/javascript"></script>
   <script src="../static/js/python_compressed.js" type="text/javascript"></script>
@@ -24,14 +27,22 @@
   <script src="../static/js/custom_blocks.js" type="text/javascript"></script>
   <script src="../static/js/custom_codegen.js" type="text/javascript"></script>
   <link rel="manifest" href="../static/manifest.json" />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Google+Sans:400,500|Roboto:400,400italic,500,500italic,700,700italic|Roboto+Mono:400,500,700|Material+Icons">  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow-night-blue.min.css" id="theme_sheet">     
+  
+  <script>hljs.initHighlightingOnLoad();</script>
+
+
   <script>
   navigator.serviceWorker && navigator.serviceWorker.register('../static/sw.js').then(function(registration) {
   });
 </script>
 </head>
 <body>
+
+
+  
   <nav class="navbar navbar-dark navbar-expand-lg">
     <a class="navbar-brand" href="#">AnyoneAI Lab</a>
     <div class="navbar-collapse justify-content-between" id="navbar">
@@ -87,14 +98,24 @@
                   {{ problem_statement }}
               </div>
           </div>
-          <div class="tab-pane fade" id="pills-code" role="tabpanel" aria-labelledby="pills-profile-tab">
-              <div id="code_panel" style="background-color: #f1f1f1; font-family: 'Source Code Pro', monospace; display: block; margin: 20px; padding: 40px; padding-bottom: 40px; height: fit-content; font-size: 13;">   
+          <div class="tab-pane fade show active" id="pills-code" role="tabpanel" aria-labelledby="pills-profile-tab">
+              <pre style="position: relative;">
+                  <div class="code-button-container">
+                      <button class="code-button"><i class="material-icons">content_copy</i></button>
+                      <button class="code-button"><i class="material-icons">brightness_medium</i></button>
               </div>
+              <code class="Python" id="code_panel"> </code>
+              </pre>
           </div>
           {% else %}
           <div class="tab-pane fade show active" id="pills-code" role="tabpanel" aria-labelledby="pills-profile-tab">
-              <div id="code_panel" style="background-color: #f1f1f1; font-family: 'Source Code Pro', monospace; display: block; margin: 20px; padding: 40px; padding-bottom: 40px; height: fit-content; font-size: 13;"> 
-              </div>
+              <pre style="position: relative;">
+                <div class="code-button-container">
+                  <button class="code-button" onclick="toggle_theme()"><i class="material-icons code-icons">brightness_medium</i></button>
+                  <button class="code-button" onclick="copy_code()"><i class="material-icons code-icons">content_copy</i></button>
+                </div>
+                <code class="Python" id="code_panel"> </code>
+            </pre>
           </div>
           {% endif %}
 
@@ -102,7 +123,21 @@
         </div>
 
   </div>
- 
+  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <svg class=" rounded mr-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"
+          focusable="false" role="img">
+          <rect fill="#007aff" width="100%" height="100%" /></svg>
+        <strong class="mr-auto">Bootstrap</strong>
+        <small class="text-muted">11 mins ago</small>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="toast-body">
+        Hello, world! This is a toast message.
+      </div>
+    </div>
   <!-- <div class="submit_bar">
       <div class="row">
         <div class="col">

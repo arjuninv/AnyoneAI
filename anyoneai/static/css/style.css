@@ -28,6 +28,15 @@ code {
   font-family: monospace;
   white-space: pre-wrap;
   color: #939393 !important;
+
+}
+
+#code_panel {
+  display: block;
+  margin: 16px;
+  margin-top: -36px;
+  padding: 24px;
+  font-size: 13;
 }
 
 #q_panel {
@@ -43,10 +52,10 @@ code {
   outline: none;
   color: white;
   font-size: 22px;
-min-width: 80px;
-max-width: 30%;
-height: 32px;
-padding-top: 0px !important;
+  min-width: 80px;
+  max-width: 30%;
+  height: 32px;
+  padding-top: 0px !important;
 }
 
 #title:focus {
@@ -107,13 +116,30 @@ padding-top: 0px !important;
 
 }
 
-.submit_bar {
+
+.code-button-container {
+  display: flex;
+  flex-direction: row;
   position: absolute;
-  padding: 5px;
-  padding-right: 20px;
-  bottom:50px;
-  width: 100%;
-  background-color: #f1f1f1;
-  height: 50px;
-  right: 0px;
+  top: 15px;
+  right: 20px;
+}
+
+.code-button {
+  background-color: transparent;
+  outline: none;
+  border: 0px;
+  color: white;
+  height: 32px;
+  width: 32px;
+  cursor: pointer;
+}
+
+.code-button:focus {
+  outline: none;
+}
+
+.code-icons {
+  font-size: 18px!important;
+  font-weight: 400!important;
 }
