@@ -1,7 +1,9 @@
 window.onload = function() {
   loadBlocks();
+  save_info = document.getElementById("save_info");
+  code_panel = document.getElementById("code_panel");
   let searchParams = new URLSearchParams(window.location.search);
-  $.get("../services/getXML?file=" + searchParams.get("file"), function(data) {
+  $.get("../services/getXML?filename=" + searchParams.get("filename"), function(data) {
     if (data != "NO DATA") {
       let xml = Blockly.Xml.textToDom(data);
       Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);
@@ -9,14 +11,17 @@ window.onload = function() {
   });
   setInterval(saveXML, 2000);
 };
-
+var save_info;
+var code_panel;
 let saveStatus = false
 function saveXML(){
   let searchParams = new URLSearchParams(window.location.search);
   let xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
   if (saveStatus){
-    $.get("../services/saveXML?file=" + searchParams.get("file")+"&xml="+encodeURI(Blockly.Xml.domToText(xml)), function(data) {
+    save_info.innerHTML = "All changes saved";
+    $.get("../services/saveXML?filename=" + searchParams.get("filename")+"&xml="+encodeURI(Blockly.Xml.domToText(xml)), function(data) {
       if (data != "SAVED"){
+        
         console.log(data)
       }
     });
@@ -25,31 +30,15 @@ function saveXML(){
   
 }
 
-$(function() {
-  $("#upload_link").on("click", function(e) {
-    e.preventDefault();
-    $("#fileInput:hidden").trigger("click");
-  });
-});
-
-$(function() {
-  $("#continue_recent").on("click", function(e) {
-    e.preventDefault();
-    $("#fileInput:hidden").trigger("click");
-  });
-});
 
 function downloadCode() {
+  let searchParams = new URLSearchParams(window.location.search);
   Blockly.Python.INFINITE_LOOP_TRAP = null;
   var code = Blockly.Python.workspaceToCode(mainWorkspace);
   code = preprocess_code(code);
-  var filename = sessionStorage.getItem("projectName");
-  if (filename == "null" || filename == null) {
-    sessionStorage.projectName = "my_anyoneai_project";
-  }
-  if (filename != null) {
-    download(filename + ".py", code);
-  }
+
+  download(searchParams.get("filename") + ".py", code);
+  
 }
 
 function parse(string, from, to) {
@@ -67,6 +56,13 @@ function preprocess_code(code) {
     unp_code = unp_code.replace(temp_import, "");
   }
   return new_code + unp_code;
+}
+
+function code_disp() {
+  Blockly.Python.INFINITE_LOOP_TRAP = null;
+  var code = Blockly.Python.workspaceToCode(mainWorkspace);
+  code = preprocess_code(code);
+  code_panel.innerText = code;
 }
 
 function loadBlocks() {
@@ -101,23 +97,9 @@ function saveFile() {
     download(filename + ".aai", blocks_text);
   }
 }
+
 function saveBlocks() {
+  code_disp();
+  save_info.innerHTML = "Saving...";
   saveStatus = true;
-}
-
-
-function createPrj() {
-  if (filename == "null" || filename == null) {
-    sessionStorage.projectName = "my_anyoneai_project";
-  }
-  var filename = prompt(
-    "Project name: ",
-    sessionStorage.getItem("projectName")
-  );
-  sessionStorage.projectName = filename;
-
-  if (filename != null) {
-    $("#welcomeModal").modal("hide");
-    title.value = filename;
-  }
 }

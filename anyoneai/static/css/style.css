@@ -52,6 +52,15 @@ padding-top: 0px !important;
 #title:focus {
   text-decoration: underline;
 }
+#save_info {
+  font-size: 14px;
+  text-decoration: underline;
+  height: fit-content;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 20px;
+  opacity: 0.8;
+}
 
 .submit-btn {
   border-color: white!important;
