@@ -43,6 +43,7 @@ def build():
     return render_template("lab.html", learn=False)
 
 
+
 @app.route('/lab/<lab_name>')
 def lab(lab_name):
     data = open(os.path.join(ROOT_PATH, 'labs.json'))
@@ -90,11 +91,48 @@ def service_build_files():
     response = []
     for file in files:
         if file.endswith(".aai"):
-            url = file + ".aai"
+            url = "build?file="+file
         else:
             url = ""
         response.append((file, url))
     return jsonify(response)
+
+
+@app.route('/build')
+def build_local():
+    if "file" in request.args:
+        return render_template("lab.html", learn=False)
+    else:
+        return render_template("404.html")
+
+@app.route('/services/getXML')
+def getXML():
+    if "file" in request.args:
+        file = request.args["file"]
+        xml_file = open(os.getcwd()+"/"+file,'r')
+        xml = xml_file.read()
+        xml_file.close()
+        if xml != "":
+            return xml
+        else:
+            return "NO DATA"
+    else:
+        return "NO DATA"
+
+@app.route('/services/saveXML')
+def saveXML():
+    if "file" in request.args:
+        file = request.args["file"]
+        if "xml" in request.args:
+            xml_file = open(os.getcwd()+"/"+file,'w')
+            xml_file.write(request.args["xml"])
+            xml_file.close()
+            return "SAVED"
+        else:
+            return "XML NOT PRESENT"
+    else:
+        return "FILE NOT FOUND"
+
 
 
 @app.route('/service/labs')
