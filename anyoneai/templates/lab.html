@@ -94,11 +94,13 @@
         <div class="tab-content" id="pills-tabContent">
           {% if learn %}
           <div class="tab-pane fade show active" id="pills-tutorial" role="tabpanel" aria-labelledby="pills-home-tab">
+            
               <div id="q_panel" style="display: block; padding: 20px; padding: 40px; padding-bottom: 40px; height: calc(100% - 106px);">
                   {{ problem_statement }}
               </div>
           </div>
           <div class="tab-pane fade show active" id="pills-code" role="tabpanel" aria-labelledby="pills-profile-tab">
+            
               <pre style="position: relative;">
                   <div class="code-button-container">
                       <button class="code-button"><i class="material-icons">content_copy</i></button>
@@ -109,13 +111,26 @@
           </div>
           {% else %}
           <div class="tab-pane fade show active" id="pills-code" role="tabpanel" aria-labelledby="pills-profile-tab">
-              <pre style="position: relative;">
+            <div class="rel-container">
+            <div class="exec-btn-container">
+                <button id="execute_btn" class="custom-flat-btn btn " onclick="execute_code()">Run</button>
+                <button class="custom-flat-btn btn " onclick="save_py_code()">Save (.py)</button>
+            </div>
+            </div>
+              <pre style="position: relative;" id="code_container">
                 <div class="code-button-container">
                   <button class="code-button" onclick="toggle_theme()"><i class="material-icons code-icons">brightness_medium</i></button>
                   <button class="code-button" onclick="copy_code()"><i class="material-icons code-icons">content_copy</i></button>
                 </div>
-                <code class="Python" id="code_panel"> </code>
+                <code class="Python code_panel" id="code_panel"> </code>
             </pre>
+            <pre style="position: relative; display: none;" id="terminal_container">
+                <div class="code-button-container">
+                  <button class="code-button" onclick="close_terminal()"><i class="material-icons code-icons">close</i></button>
+                </div>
+                <code class="code_panel" id="terminal_panel">  </code>
+              </pre>
+
           </div>
           {% endif %}
 

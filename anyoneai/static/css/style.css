@@ -31,12 +31,18 @@ code {
 
 }
 
-#code_panel {
-  display: block;
+.code_panel {
+  min-height: 50px;
   margin: 16px;
   margin-top: -36px;
   padding: 24px;
   font-size: 13;
+  word-wrap: normal!important;
+}
+
+#terminal_panel {
+  background-color: black!important;
+  overflow: scroll;
 }
 
 #q_panel {
@@ -142,4 +148,26 @@ code {
 .code-icons {
   font-size: 18px!important;
   font-weight: 400!important;
+}
+
+.rel-container {
+  position: relative;
+  height: 50px;
+  margin-right: 16px;
+}
+
+.exec-btn-container{
+  position: absolute;
+  right: 10px;
+  margin-left: auto;
+  right: 0px;
+}
+
+.custom-flat-btn {
+  background-color: #e6e6e6!important;
+  margin:0px!important;
+  padding: 10px!important;
+  padding-left: 20px!important;
+  padding-right: 20px!important;
+  box-shadow: 0 0px 0px 0 rgba(0,0,0,0)!important; 
 }

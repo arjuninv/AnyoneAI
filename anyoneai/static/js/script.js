@@ -1,9 +1,23 @@
+var filename;
+var save_info;
+var code_panel;
+let saveStatus = false;
+var terminal_panel;
+var code_container;
+var terminal_container;
+
+
+
 window.onload = function() {
   loadBlocks();
+  let searchParams = new URLSearchParams(window.location.search);
+  code_container = document.getElementById("code_container");
+  terminal_container = document.getElementById("terminal_container");
+  filename = searchParams.get("filename")
   save_info = document.getElementById("save_info");
   code_panel = document.getElementById("code_panel");
-  let searchParams = new URLSearchParams(window.location.search);
-  $.get("../services/getXML?filename=" + searchParams.get("filename"), function(data) {
+  terminal_panel = document.getElementById("terminal_panel");
+  $.get("../services/getXML?filename=" + filename , function(data) {
     if (data != "NO DATA") {
       let xml = Blockly.Xml.textToDom(data);
       Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);
@@ -11,15 +25,12 @@ window.onload = function() {
   });
   setInterval(saveXML, 2000);
 };
-var save_info;
-var code_panel;
-let saveStatus = false
+
 function saveXML(){
-  let searchParams = new URLSearchParams(window.location.search);
   let xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
   if (saveStatus){
     save_info.innerHTML = "All changes saved";
-    $.get("../services/saveXML?filename=" + searchParams.get("filename")+"&xml="+encodeURI(Blockly.Xml.domToText(xml)), function(data) {
+    $.get("../services/saveXML?filename=" + filename +"&xml="+encodeURI(Blockly.Xml.domToText(xml)), function(data) {
       if (data != "SAVED"){
         
         console.log(data)
@@ -32,12 +43,11 @@ function saveXML(){
 
 
 function downloadCode() {
-  let searchParams = new URLSearchParams(window.location.search);
   Blockly.Python.INFINITE_LOOP_TRAP = null;
   var code = Blockly.Python.workspaceToCode(mainWorkspace);
   code = preprocess_code(code);
 
-  download(searchParams.get("filename") + ".py", code);
+  download(filename + ".py", code);
   
 }
 
@@ -142,4 +152,33 @@ function copy_code() {
        document.execCommand("copy");
       
       }
+}
+
+var source = new EventSource("/services/build/execute?filename=" + filename);
+source.close();
+
+function execute_code(){
+  var execute_btn = document.getElementById("execute_btn");
+  execute_btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Running...';
+  terminal_panel.innerHTML = "";
+  terminal_container.style.display = "block";
+  code_container.style.display = "none";
+  source = new EventSource("/services/build/execute?filename=" + filename);
+    source.onmessage = function(event) {
+     //  source.close();
+     console.log(event.data + " |||| " + event.data.includes("end_of_output"));
+      if(event.data.includes("end_of_output")){
+        source.close();
+      } else {
+        terminal_panel.innerHTML += event.data;
+        execute_btn.innerHTML = 'Run';
+      }
+    }
+}
+
+function close_terminal() {
+  source.close();
+  terminal_container.style.display = "none";
+  code_container.style.display = "block";
+  execute_btn.innerHTML = 'Run';
 }
