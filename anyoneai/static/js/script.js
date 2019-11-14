@@ -2,6 +2,7 @@ var filename;
 var save_info;
 var code_panel;
 let saveStatus = false;
+let pycode = "";
 var terminal_panel;
 var code_container;
 var terminal_container;
@@ -27,18 +28,16 @@ window.onload = function() {
 };
 
 function saveXML(){
-  let xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+  let xml = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(Blockly.mainWorkspace));
+  let json = {"filename": filename, "xml": xml};
+  let xmlhttp = new XMLHttpRequest();
   if (saveStatus){
+    xmlhttp.open("POST", "../services/saveXML?file="+filename)
     save_info.innerHTML = "All changes saved";
-    $.get("../services/saveXML?filename=" + filename +"&xml="+encodeURI(Blockly.Xml.domToText(xml)), function(data) {
-      if (data != "SAVED"){
-        
-        console.log(data)
-      }
-    });
-    saveStatus = false;
-  }
-  
+    xmlhttp.setRequestHeader('Content-Type', 'text/xml');
+    xmlhttp.send(xml);
+  };
+  saveStatus = false;
 }
 
 
@@ -68,11 +67,18 @@ function preprocess_code(code) {
   return new_code + unp_code;
 }
 
+function save_py_code(){
+  let xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("POST", "../services/saveCode?file="+filename)
+  xmlhttp.send(pycode);
+}
+
 function code_disp() {
   Blockly.Python.INFINITE_LOOP_TRAP = null;
   var code = Blockly.Python.workspaceToCode(mainWorkspace);
-  code = preprocess_code(code);
-  code_panel.innerText = code;
+  pycode = preprocess_code(code);
+
+  code_panel.innerText = pycode;
 }
 
 function loadBlocks() {

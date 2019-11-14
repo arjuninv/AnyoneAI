@@ -134,25 +134,35 @@ def getXML():
         if xml != "":
             return xml
         else:
-            return "NO DATA"
+            return "Error"
     else:
-        return "NO DATA"
+        return "file not found"
 
 
-@app.route('/services/saveXML')
+@app.route('/services/saveXML', methods=['POST'])
 def saveXML():
-    if "filename" in request.args:
-        filename = request.args["filename"]
-        if "xml" in request.args:
-            xml_file = open(os.getcwd()+"/"+filename,'w')
-            xml_file.write(request.args["xml"])
-            xml_file.close()
-            return "SAVED"
-        else:
-            return "XML NOT PRESENT"
+    filename =request.args["file"]
+    data = request.get_data()
+    if filename:
+        with open(os.getcwd()+"/"+filename,'w') as file:
+            file.write(str(data, 'utf-8'))
+        return "Saved"
     else:
-        return "FILE NOT FOUND"
+        return "Error"
+        
 
+    
+
+@app.route('/services/saveCode', methods=['POST'])
+def saveCode():
+    filename = request.args["file"]
+    code = request.get_data()
+    if filename:
+        with open(os.path.join(os.getcwd(),filename.replace('.aai','.py')),'w+') as file:
+            file.write(str(code, 'utf-8'))
+        return 'Saved'
+    else:
+        return 'Error'
 
 @app.route('/services/build/execute')
 def execute():
