@@ -117,7 +117,7 @@ def service_build_files():
     response = []
     for file in files:
         if file.endswith(".aai"):
-            url = "build?filename="+file
+            url = "build?filename=" + file
         else:
             url = ""
         response.append((file, url))
@@ -158,14 +158,14 @@ def saveXML():
 def execute():
     if "filename" in request.args:
         filename = request.args["filename"]
-        process = subprocess.Popen([ "python", filename], stdout=subprocess.PIPE)
+        process = subprocess.Popen([ "python", filename.replace(".aai", ".py")], stdout=subprocess.PIPE)
         def read_process():
             while True:
                 output = process.stdout.readline()
                 if output == '' and process.poll() is not None:
                     break
                 if output:
-                    yield "data:" + str(output.strip(), 'utf-8').replace(" ", "d&nbsp;") + "\n\n"
+                    yield "data:" + str(output.strip(), 'utf-8') + "\n\n"
             yield "data:end_of_output\n\n" 
         return Response(read_process(), mimetype='text/event-stream')
 

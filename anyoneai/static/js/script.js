@@ -121,7 +121,7 @@ function toggle_theme() {
   var dark = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow-night-blue.min.css';
   var light = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css';
   var icons = document.getElementsByClassName('code-button');
-
+  
   if(theme_sheet.href == dark){
     theme_sheet.href = light;
     for(i = 0; i < icons.length; i++) {
@@ -170,7 +170,7 @@ function execute_code(){
       if(event.data.includes("end_of_output")){
         source.close();
       } else {
-        terminal_panel.innerHTML += event.data;
+        terminal_panel.innerHTML += event.data + "\n";
         execute_btn.innerHTML = 'Run';
       }
     }
