@@ -1,5 +1,5 @@
 from flask import (Flask, render_template, url_for,
-                    jsonify, json, Markup, request)
+                    jsonify, json, Markup, request, Response)
 import gevent
 from gevent.pywsgi import WSGIServer
 import logging
@@ -9,6 +9,10 @@ import shutil
 import logging
 import argparse
 import webbrowser
+from shelljob import proc
+import subprocess
+from gevent import monkey
+
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--port", help="Port to use [default - 8089]")
@@ -22,11 +26,14 @@ if args.port:
 
 ROOT_PATH = os.path.dirname(__file__)
 
+monkey.patch_all()
 app = Flask(__name__, root_path=ROOT_PATH)
 
 log = logging.getLogger('werkzeug')
 log.disabled = True
 
+
+# WebApp Handlers
 
 @app.route('/')
 def index():
@@ -39,9 +46,11 @@ def lab_list():
 
 
 @app.route('/build')
-def build():
-    return render_template("lab.html", learn=False)
-
+def build_local():
+    if "filename" in request.args:
+        return render_template("lab.html", learn=False)
+    else:
+        return render_template("404.html")
 
 
 @app.route('/lab/<lab_name>')
@@ -54,6 +63,8 @@ def lab(lab_name):
     else:
         return "Coming soon..."
 
+
+# Service Handlers
 
 @app.route('/service/build/cwd')
 def service_build_cwd():
@@ -106,19 +117,12 @@ def service_build_files():
     response = []
     for file in files:
         if file.endswith(".aai"):
-            url = "build?filename="+file
+            url = "build?filename=" + file
         else:
             url = ""
         response.append((file, url))
     return jsonify(response)
 
-
-@app.route('/build')
-def build_local():
-    if "filename" in request.args:
-        return render_template("lab.html", learn=False)
-    else:
-        return render_template("404.html")
 
 @app.route('/services/getXML')
 def getXML():
@@ -130,24 +134,50 @@ def getXML():
         if xml != "":
             return xml
         else:
-            return "NO DATA"
+            return "Error"
     else:
-        return "NO DATA"
+        return "file not found"
 
-@app.route('/services/saveXML')
+
+@app.route('/services/saveXML', methods=['POST'])
 def saveXML():
+    filename =request.args["file"]
+    data = request.get_data()
+    if filename:
+        with open(os.getcwd()+"/"+filename,'w') as file:
+            file.write(str(data, 'utf-8'))
+        return "Saved"
+    else:
+        return "Error"
+        
+
+    
+
+@app.route('/services/saveCode', methods=['POST'])
+def saveCode():
+    filename = request.args["file"]
+    code = request.get_data()
+    if filename:
+        with open(os.path.join(os.getcwd(),filename.replace('.aai','.py')),'w+') as file:
+            file.write(str(code, 'utf-8'))
+        return 'Saved'
+    else:
+        return 'Error'
+
+@app.route('/services/build/execute')
+def execute():
     if "filename" in request.args:
         filename = request.args["filename"]
-        if "xml" in request.args:
-            xml_file = open(os.getcwd()+"/"+filename,'w')
-            xml_file.write(request.args["xml"])
-            xml_file.close()
-            return "SAVED"
-        else:
-            return "XML NOT PRESENT"
-    else:
-        return "FILE NOT FOUND"
-
+        process = subprocess.Popen([ "python", filename.replace(".aai", ".py")], stdout=subprocess.PIPE)
+        def read_process():
+            while True:
+                output = process.stdout.readline()
+                if output == '' and process.poll() is not None:
+                    break
+                if output:
+                    yield "data:" + str(output.strip(), 'utf-8') + "\n\n"
+            yield "data:end_of_output\n\n" 
+        return Response(read_process(), mimetype='text/event-stream')
 
 
 @app.route('/service/labs')

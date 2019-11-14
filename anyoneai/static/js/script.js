@@ -1,9 +1,24 @@
+var filename;
+var save_info;
+var code_panel;
+let saveStatus = false;
+let pycode = "";
+var terminal_panel;
+var code_container;
+var terminal_container;
+
+
+
 window.onload = function() {
   loadBlocks();
+  let searchParams = new URLSearchParams(window.location.search);
+  code_container = document.getElementById("code_container");
+  terminal_container = document.getElementById("terminal_container");
+  filename = searchParams.get("filename")
   save_info = document.getElementById("save_info");
   code_panel = document.getElementById("code_panel");
-  let searchParams = new URLSearchParams(window.location.search);
-  $.get("../services/getXML?filename=" + searchParams.get("filename"), function(data) {
+  terminal_panel = document.getElementById("terminal_panel");
+  $.get("../services/getXML?filename=" + filename , function(data) {
     if (data != "NO DATA") {
       let xml = Blockly.Xml.textToDom(data);
       Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);
@@ -11,33 +26,27 @@ window.onload = function() {
   });
   setInterval(saveXML, 2000);
 };
-var save_info;
-var code_panel;
-let saveStatus = false
+
 function saveXML(){
-  let searchParams = new URLSearchParams(window.location.search);
-  let xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+  let xml = Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(Blockly.mainWorkspace));
+  let json = {"filename": filename, "xml": xml};
+  let xmlhttp = new XMLHttpRequest();
   if (saveStatus){
+    xmlhttp.open("POST", "../services/saveXML?file="+filename)
     save_info.innerHTML = "All changes saved";
-    $.get("../services/saveXML?filename=" + searchParams.get("filename")+"&xml="+encodeURI(Blockly.Xml.domToText(xml)), function(data) {
-      if (data != "SAVED"){
-        
-        console.log(data)
-      }
-    });
-    saveStatus = false;
-  }
-  
+    xmlhttp.setRequestHeader('Content-Type', 'text/xml');
+    xmlhttp.send(xml);
+  };
+  saveStatus = false;
 }
 
 
 function downloadCode() {
-  let searchParams = new URLSearchParams(window.location.search);
   Blockly.Python.INFINITE_LOOP_TRAP = null;
   var code = Blockly.Python.workspaceToCode(mainWorkspace);
   code = preprocess_code(code);
 
-  download(searchParams.get("filename") + ".py", code);
+  download(filename + ".py", code);
   
 }
 
@@ -58,11 +67,18 @@ function preprocess_code(code) {
   return new_code + unp_code;
 }
 
+function save_py_code(){
+  let xmlhttp = new XMLHttpRequest();
+  xmlhttp.open("POST", "../services/saveCode?file="+filename)
+  xmlhttp.send(pycode);
+}
+
 function code_disp() {
   Blockly.Python.INFINITE_LOOP_TRAP = null;
   var code = Blockly.Python.workspaceToCode(mainWorkspace);
-  code = preprocess_code(code);
-  code_panel.innerText = code;
+  pycode = preprocess_code(code);
+
+  code_panel.innerText = pycode;
 }
 
 function loadBlocks() {
@@ -100,6 +116,75 @@ function saveFile() {
 
 function saveBlocks() {
   code_disp();
-  save_info.innerHTML = "Saving...";
+  document.querySelectorAll('pre code').forEach((block) => {
+    hljs.highlightBlock(block);
+  });  save_info.innerHTML = "Saving...";
   saveStatus = true;
+}
+
+function toggle_theme() {
+  var theme_sheet = document.getElementById('theme_sheet');
+  var dark = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow-night-blue.min.css';
+  var light = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css';
+  var icons = document.getElementsByClassName('code-button');
+  
+  if(theme_sheet.href == dark){
+    theme_sheet.href = light;
+    for(i = 0; i < icons.length; i++) {
+      icons[i].style.color = 'black';
+    }
+  } else {
+    theme_sheet.href = dark;
+    for(i = 0; i < icons.length; i++) {
+      icons[i].style.color = 'white';
+    }
+  }
+}
+
+
+function copy_code() {
+  $('.toast').toast("show");
+
+  if (document.selection) { 
+      var range = document.body.createTextRange();
+      range.moveToElementText(code_panel);
+      range.select().createTextRange();
+      document.execCommand("copy"); 
+  
+  } else if (window.getSelection) {
+      var range = document.createRange();
+       range.selectNode(code_panel);
+       window.getSelection().addRange(range);
+       document.execCommand("copy");
+      
+      }
+}
+
+var source = new EventSource("/services/build/execute?filename=" + filename);
+source.close();
+
+function execute_code(){
+  var execute_btn = document.getElementById("execute_btn");
+  execute_btn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Running...';
+  terminal_panel.innerHTML = "";
+  terminal_container.style.display = "block";
+  code_container.style.display = "none";
+  source = new EventSource("/services/build/execute?filename=" + filename);
+    source.onmessage = function(event) {
+     //  source.close();
+     console.log(event.data + " |||| " + event.data.includes("end_of_output"));
+      if(event.data.includes("end_of_output")){
+        source.close();
+      } else {
+        terminal_panel.innerHTML += event.data + "\n";
+        execute_btn.innerHTML = 'Run';
+      }
+    }
+}
+
+function close_terminal() {
+  source.close();
+  terminal_container.style.display = "none";
+  code_container.style.display = "block";
+  execute_btn.innerHTML = 'Run';
 }
